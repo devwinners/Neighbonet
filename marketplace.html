@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://kit.fontawesome.com/a1910bac18.js" crossorigin="anonymous"></script>
+    <style>
+        html{
+            background: beige;
+        }
+        .product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-image {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity input {
+            width: 40px;
+            text-align: center;
+            margin: 0 10px;
+        }
+        .anchors{
+        font-weight:bold;
+        font-size: 1.7em;
+        color:white;
+        text-decoration: none;
+        transition: 0.3s;
+
+    }
+
+    .anchors:hover{
+        color:#2884D8;
+        letter-spacing: 3px;
+        text-decoration: underline;
+    }
+    </style>
+    
+</head>
+<body>
+    
+   <table style='width:100%;border-collapse: collapse;'>
+        
+        <tr style='background: #333;'>
+            <td style='width:20%;border-radius:15px 0px 0px 15px;'><h1 style='font-family:Verdana;font-size:36px;color:white;padding-left:10px;'>NeighboNet</h1></td>
+            <td style='width:30%;'></td>
+            <td style='width:10%;'><center><a class='anchors' href='index.html'>Home</a></center></td>
+            <td style='width:10%;'><center><a class='anchors' href='portfolio.html'>About</a></center></td>
+            <td style='width:10%;'><center><a class='anchors'>Services</a></center></td>
+            <td style='width:10%;'><center><a class='anchors'>Contact</a></center></td>
+            <td style='width:10%;'><center><a class='anchors' href='login.htm'>Login</a></center></td>
+
+
+
+        </tr>
+    </table>
+    
+    <div id="main" style="display: flex;padding-left: 30px;">
+        <div id="dashboard" style="border: 2px solid #5bc8b2;width: 250px;">
+            <div id="dashtop" style="display: flex;">
+                <i class="fa-solid fa-gauge fa-3x" style="color: #5bc8b2;transform: translate(25px,5px);"></i>
+                <p style="transform: translate(50px);font-family: Cambria;"><b>DASHBOARD</b></p>
+            </div>
+            <div id="btns" style="padding: 20px;font-family: Arial;">
+                <p><a href="Dashboard.html" style="text-decoration: none;color: black;">--Bulletin Board</a></p>
+                <p><a href="#" style="text-decoration: none;color: black;">--Townhall</a></p>
+                <p><a href="#" style="text-decoration: none;color: black;">--Visitor Approval</a></p>
+                <p><a href="#" style="text-decoration: none;color: black;">--Merchandise</a></p>
+    
+                <br>
+                <div id="setting_box" style="display: flex;">
+                    <i class="fa-solid fa-gear fa-2x" style="color: #787a7d;"></i>
+                    <p style="transform: translate(20px,-10px);"><a href="#" style="text-decoration: none;color: black;font-family: Arial;">Account Settings</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="product" style="margin-left: 30px;margin-top:-200px">
+
+            <img class="product-image" src="Images/No_Parking.PNG">
+            
+            <div>
+                
+                <p style="margin-left:100px ;font-size: 1.3em;"> &#8377; 150</p>
+            </div>
+            <div class="quantity " style="margin-left: 100px;">
+                <button onclick="decrementQuantity()">-</button>
+                <input type="number" id="quantity" value="1" min="1">
+                <button onclick="incrementQuantity()">+</button>
+            </div>
+    
+            <button onclick="addToCart()" style="margin-left: 100px;">Add to Cart</button>
+        </div>
+
+        <div class="product" style="margin-left: -662px;margin-top:50px">
+
+            <img class="product-image" src="Images/Baby_Boar.PNG">
+            
+            <div>
+                
+                <p style="margin-left:100px ;font-size: 1.3em;"> &#8377; 150</p>
+            </div>
+            <div class="quantity " style="margin-left: 100px;">
+                <button onclick="decrementQuantity()">-</button>
+                <input type="number" id="quantity" value="1" min="1">
+                <button onclick="incrementQuantity()">+</button>
+            </div>
+    
+            <button onclick="addToCart()" style="margin-left: 100px;">Add to Cart</button>
+        </div>
+
+        <div class="product" style="margin-left: -650px;margin-top:320px">
+
+            <img class="product-image" src="Images/lift_service.PNG">
+            
+            <div>
+                
+                <p style="margin-left:100px ;font-size: 1.3em;"> &#8377; 150</p>
+            </div>
+            <div class="quantity " style="margin-left: 100px;">
+                <button onclick="decrementQuantity()">-</button>
+                <input type="number" id="quantity" value="1" min="1">
+                <button onclick="incrementQuantity()">+</button>
+            </div>
+    
+            <button onclick="addToCart()" style="margin-left: 100px;">Add to Cart</button>
+        </div>
+        
+
+        
+    </div>
+
+    <script>
+        let quantity = 1;
+
+        function incrementQuantity() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrementQuantity() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        function addToCart() {
+            const input = document.getElementById('quantity');
+            const selectedQuantity = parseInt(input.value);
+            
+        }
+    </script>
+</body>
+</html>

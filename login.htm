@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login | Neighbonet</title>
+	<link rel='icon' type='image/x-icon' href='https://github.com/VISHWAAR/storage/blob/main/icon.png?raw=true'>
+
+</head>
+<style>
+	html{
+		background: beige;
+	}
+	.entry{
+		width:300px;
+		height:40px;
+		border-radius:10px;
+	}
+	.login{
+		width:200px;
+		height:60px;
+		border-radius:15px;
+		border-width:1px;
+		bakground:#d16c06;
+		color:black;
+		transition:0.3s;
+	}
+	.login:hover{
+		border-width:0px;
+		cursor:pointer;
+		color:white;
+		letter-spacing:7px;
+		background:#c28c55;
+		-webkit-box-reflect:below 2px linear-gradient(transparent,transparent,transparent,blue);
+	}
+	.anchors{
+		font-weight:bold;
+		font-size: 1.7em;
+		color:white;
+		text-decoration: none;
+		transition: 0.3s;
+
+	}
+
+	.anchors:hover{
+		color:#2884D8;
+		letter-spacing: 3px;
+		text-decoration: underline;
+	}
+</style>
+<body>
+	<table style='width:100%;border-collapse: collapse;'>
+		
+		<tr style='background: #333;'>
+			<td style='width:20%;border-radius:15px 0px 0px 15px;'><h1 style='font-family:Verdana;font-size:36px;color:white;padding-left:10px;'>NeighboNet</h1></td>
+			<td style='width:30%;'></td>
+			<td style='width:10%;'><center><a class='anchors' href='index.html'>Home</a></center></td>
+			<td style='width:10%;'><center><a class='anchors' href='portfolio.html'>About</a></center></td>
+			<td style='width:10%;'><center><a class='anchors'>Services</a></center></td>
+			<td style='width:10%;'><center><a class='anchors'>Contact</a></center></td>
+			<td style='width:10%;'><center><a class='anchors' href='login.htm'>Login</a></center></td>
+
+
+
+		</tr>
+	</table>
+	
+	<br><br>
+	<center>
+		<div style='border:1px solid purple;border-radius:15px;width:30%;height:40%;background:white;box-shadow:2px 2px 4px 0px purple,inset 0px 10px 0px purple;'>
+			<br>
+			<center><h1 style='color:black;'>Login</h1></center>
+			<br><br>
+			<input type='text' id='user' placeholder='Enter username' class='entry'>
+			<br><br>
+			<input type='password' id='passwd' placeholder='Enter Password' class='entry'>
+			<br><br><br>
+			<button class='login' id='login'>Login</button>
+			<br><br><br>
+
+
+		</div>
+
+
+
+	</center>
+	
+
+</body>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
+<script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
+
+<script type='module'>
+	// Import the functions you need from the SDKs you need
+	 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig = {
+	  apiKey: "AIzaSyBuUPN1d9YvLOXgMv9A0DItNo_IKo2SYew",
+	  authDomain: "hackathon-handlers.firebaseapp.com",
+	  projectId: "hackathon-handlers",
+	  storageBucket: "hackathon-handlers.appspot.com",
+	  messagingSenderId: "1030547854386",
+	  appId: "1:1030547854386:web:bd3f2713fb275aef60d82b",
+	  measurementId: "G-5Y71Q1NXQC"
+	};
+
+	// Initialize Firebase
+	const app = firebase.initializeApp(firebaseConfig);
+	const auth=firebase.auth();
+	const db=firebase.firestore();
+	const storage=firebase.storage();
+
+	document.getElementById('login').onclick=async function(){
+		var user=document.getElementById('user').value.trim();
+		var passwd=document.getElementById('passwd').value.trim();
+		if (user.length==0 || passwd.length==0){
+			alert('All fields are mandatory');
+		}
+		else{
+			if (user.includes('@neigbhonet.com')==false){
+				alert('Invalid username')
+			}
+			else{
+				var error=[];
+				auth.signInWithEmailAndPassword(user,passwd).catch((err) => {
+					alert(err.message,err);
+					error.push(true);
+				})
+				if (error.length==0){
+					console.log(user.split('.'))
+					if (user.split('.').length==3){
+						window.sessionStorage.setItem('user',JSON.stringify([user,passwd,'user']));
+						window.open('Dashboard.html','_self')
+					}
+					else if (user.split('.').length==4){
+						window.sessionStorage.setItem('user',JSON.stringify([user,passwd,'admin']));
+						window.open('Dashboard.html','_self')
+					}
+
+
+
+
+				}
+
+			}
+		}
+
+
+	}
+
+
+</script>
+</html>

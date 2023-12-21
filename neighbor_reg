@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='icon' type='image/x-icon' href='https://github.com/VISHWAAR/storage/blob/main/icon.png?raw=true'>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
+	<title>NeighboNet Register</title>
+</head>
+<style>
+	td{
+		border:1px solid black;
+	}
+	@keyframes fade{
+		from{
+			width:100%;
+		}
+		to{
+			width:0%;
+		}
+	}
+	.entry{
+		width:300px;
+		height:40px;
+		border-radius:10px;
+	}
+	.connect{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: white;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+
+	.connect:hover{
+		box-shadow:inset 200px 0px 0px 0px purple;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	@keyframes loading{
+		from{
+			transform:rotateZ(0deg);
+		}
+		to{
+			transform:rotateZ(360deg);
+		}
+	}
+	.condet{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: white;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	.condet:hover{
+		box-shadow:inset 200px 0px 0px 0px #d18502;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	.register{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: whitesmoke;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	.register:hover{
+		box-shadow:inset 200px 0px 0px 0px #1552b3;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	.go{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: whitesmoke;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	.go:hover{
+		box-shadow:inset 0px 60px 0px 0px #db330d;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+
+
+
+</style>
+<body id='body' style='display: none;'>
+	<table style='width:100%;'>
+		
+		<tr>
+			<td style='width:10%;'><img src='https://github.com/VISHWAAR/storage/blob/main/icon.png?raw=true' style='float:right;width:80%;height:80%;'> </td>
+			<td style='width:90%;border-radius:15px;background: #2884D8;'><h1 style='font-family:Agency FB;font-size:50px;color:white;padding-left:10px;'><i>NeighboNet</i></h1></td>
+
+
+		</tr>
+	</table>
+	<br><br>
+	
+	<center>
+		<div style='width:40%;height:580px;max-width:40%;overflow-x:auto;overflow-y: hidden;overflow-x: hidden;'>
+			<table style='width:100%;height:100%;'>
+				<tr>
+					<td id='step1'>
+
+						<div class='inmatereg' style='transition:0.3s;box-shadow:inset 0px 50px 0px 0px green;background: white;width:600px;height:550px;border-radius:40px;opacity:0.8;border-width: 1px;border:1px solid green;'>
+							<br><br>
+							<center><h1>Register with <u>NeighboNet</u></h1></center>
+							<br><br>
+							<center><label style='font-size:25px;'>
+								<input id='inmate' type='checkbox' style='border-radius:30px;width:25px;height:25px;'>  Register as Resident
+							</label></center>
+							<br><br>
+							<center><label style='font-size:25px;'>
+								<input id='community' type='checkbox' style='width:25px;height:25px;'>  Register as a Community
+							</label></center>
+						</div>
+					</td>
+					<td id='step2' style='display:none;'>
+						
+					</td>
+					<td id='step3' style='display:none;'>
+
+						
+					</td>
+					<td id='step4' style='display:none;'>
+						
+
+
+					</td>
+
+				</tr>
+
+
+
+	</div></center>
+
+	
+
+</body>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
+<script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
+<script type='module'>
+	// Import the functions you need from the SDKs you need
+	 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig = {
+	  apiKey: "AIzaSyBuUPN1d9YvLOXgMv9A0DItNo_IKo2SYew",
+	  authDomain: "hackathon-handlers.firebaseapp.com",
+	  projectId: "hackathon-handlers",
+	  storageBucket: "hackathon-handlers.appspot.com",
+	  messagingSenderId: "1030547854386",
+	  appId: "1:1030547854386:web:bd3f2713fb275aef60d82b",
+	  measurementId: "G-5Y71Q1NXQC"
+	};
+
+	// Initialize Firebase
+	const app = firebase.initializeApp(firebaseConfig);
+	const auth=firebase.auth();
+	const db=firebase.firestore();
+	const storage=firebase.storage();
+	window.onload=function(){
+		document.getElementById("body").style.display='initial';
+
+	}
+	var residents={step2:`
+		<div class='inmatereg' style='background: white;width:600px;height:550px;border-radius:40px;border:1px solid purple;box-shadow:inset 0px 50px 0px 0px purple;'>
+							<br><br>
+							<center><h1>Connect with your Community</u></h1></center>
+							<center><input class='entry' id='comcode' type='text' placeholder="Enter your Community's registration code"></center>
+							<br>
+							<center><button class='connect' id='connectbtn'><span class="fa fa-solid fa-link"></span> Connect</button></center>
+						</div>`,step3:`<div class='inmatereg' style='background: white;width:600px;height:550px;border-radius:40px;border:1px solid yellow;box-shadow:inset 0px 50px 0px 0px yellow;'>
+							<br><br>
+							<center><h1>Register Yourself</u></h1></center>
+							<center><input class='entry' id='name' placeholder="Enter your name"></center>
+							<br>
+							<center><input class='entry' id='phno' placeholder="Enter your Phone Number"></center>
+							<br>
+							<center><input class='entry' id='addr' placeholder="Enter your Postal Address"></center>
+							<br>
+							<center><input class='entry' id='block' placeholder="Enter your Block"></center>
+							<br>
+							<center><input class='entry' id='floor' placeholder="Enter your Floor"></center>
+							<br>
+							<center><input class='entry' id='doorno' placeholder="Enter your Door No."></center>
+							<br>
+							<center><button class='condet' id='selfreg'><span class="fa fa-solid fa-tick"></span> Confirm Details</button></center>
+						</div>`,step4:`<div class='inmatereg' style='background: white;width:600px;height:550px;border-radius:40px;border:1px solid #1552b3;box-shadow:inset 0px 50px 0px 0px #1552b3;'>
+							<br><br>
+							<center><h1>Your Credentials</h1></center>
+							<center><label>Your Username:<br><center><input type='text' class='entry' id='username' disabled></center></label></center>
+							<center><label>Set Password:</label></center>
+							<br>
+							<center><input class='entry' type='password' id='passwd' class='entry' placeholder="Enter Password">  <button id='see' ><span class="fa fa-solid fa-eye"></span></button></center>
+							<br>
+							<center><input class='entry' type='password' id='conpasswd' class='entry' placeholder="Confirm Password">  <button id='consee'><span class="fa fa-solid fa-eye"></span></button></center>
+							<br>
+							
+							<center><button class='register' id='finalreg'><span class="fa fa-solid fa-registered"></span>  Register</button></center>
+
+						</div>`};
+	var community={step2:`
+	<div style='background: white;width:600px;height:550px;border-radius:40px;border:1px solid #db330d;box-shadow:inset 0px 50px 0px 0px #db330d;'>
+	<br><br>
+		<center><h1>Register Your Community</h1></center>
+		<br><br>
+		<center><input type='text' placeholder='Enter Community/Association Name' class='entry'></center>
+		<br>
+		<center><input type='text' placeholder='Enter Address' class='entry'></center>
+		<br>
+		<center><input type='text' placeholder='How many blocks do you have ?' class='entry'></center>
+		<br>
+		<center><input type='text' placeholder='How many floors does each block have ?' class='entry'></center>
+		<br>
+		<center><input type='text' placeholder='Enter Total No. of Flats' class='entry'></center>
+		<br>
+		<center><button class='go'><span class="fa fa-solid fa-right-long"></span>  Continue</button></center>
+
+	</div> `}
+	
+	document.getElementById('community').onchange=(e) => {
+		if (e.currentTarget.checked==true){
+			document.getElementById('step2').style='';
+			document.getElementById('step2').innerHTML=community['step2'];
+			document.getElementById('step2').scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+
+		}
+
+	}
+	document.getElementById('inmate').onchange=(e) => {
+		if(event.currentTarget.checked==true){
+			document.getElementById('step2').style='';
+			document.getElementById('step2').innerHTML=residents['step2'];
+			console.log(residents['step2'])
+			document.getElementById('step2').scrollIntoView({behavior:'smooth',block: 'nearest', inline: 'center'});
+			document.getElementById('connectbtn').onclick=async function(){
+				var comids=[];
+				auth.signInWithEmailAndPassword('admin@neighbonet.com','Abc!123');
+				console.log(auth.currentUser)
+				if (document.getElementById('comcode').value.trim().length==0){
+						alert('Enter Community Code');
+				}
+				else{
+					if (document.getElementById('comcode').value.trim().length!=6){
+						alert('Invalid Community Code');
+					}
+					else{
+						document.getElementById('connectbtn').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
+						await db.collection('community').get().then(async function(g){
+							g.docs.map(t => {
+								comids.push(t.data().uid);
+							})
+
+						})
+						if (comids.includes(document.getElementById('comcode').value.trim())==false){
+							alert('Community Code not found');
+							document.getElementById('connectbtn').innerHTML=`<span class="fa fa-solid fa-link"></span> Connect`
+
+						}
+						else{
+							document.getElementById('step3').scrollIntoView({behavior:'smooth'});
+							document.getElementById('step3').style='';
+							document.getElementById('step3').innerHTML=residents['step3'];
+							document.getElementById('step3').scrollIntoView({behavior:'smooth',block: 'nearest', inline: 'center'});
+							document.getElementById('selfreg').onclick=async function(){
+								var entries=['name','addr','phno','block','floor','doorno'];
+								var c=0;
+								for (let i of entries){
+									if (document.getElementById(i).value.trim().length==0){
+										alert('All fields are mandatory');
+										break;
+									}
+									else{
+										c+=1;
+
+									}
+								}
+								if (c==entries.length){
+									var username=document.getElementById('name').value.trim()+document.getElementById('block').value.trim()+'_'+document.getElementById('doorno').value.trim()+'.'+document.getElementById('comcode').value.trim()+'@neighbhonet.com';
+
+
+									document.getElementById('step4').style='';
+									document.getElementById('step4').innerHTML=residents['step4'];
+									document.getElementById('step4').scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+									document.getElementById('username').value=username;
+									var passwd=false;
+									document.getElementById('see').onclick=function(){
+										if (passwd==false){
+											document.getElementById('passwd').type='text';
+											document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye-slash"></span>`
+											passwd=true;
+
+										}
+										else{
+											document.getElementById('passwd').type='password';
+											document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye"></span>`
+											passwd=false;
+										}
+
+									}
+									document.getElementById('consee').onclick=function(){
+										if (passwd==false){
+											document.getElementById('conpasswd').type='text';
+											document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye-slash"></span>`
+											passwd=true;
+
+										}
+										else{
+											document.getElementById('conpasswd').type='password';
+											document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye"></span>`
+											passwd=false;
+										}
+
+									}
+									document.getElementById('finalreg').onclick=async function(){
+										var passwd;
+										var conpasswd;
+										passwd=document.getElementById('passwd').value.trim();
+										conpasswd=document.getElementById('conpasswd').value.trim();
+										if (passwd!=conpasswd){
+											alert('Password do not match');
+										}
+										else{
+											document.getElementById('finalreg').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
+											await db.collection('residents').doc(username).set({
+												add:document.getElementById('addr').value.trim(),
+												block:document.getElementById('block').value.trim(),
+												d_no:document.getElementById('doorno').value.trim(),
+												floor:document.getElementById('floor').value.trim(),
+												name:document.getElementById('name').value.trim(),
+												phno:document.getElementById('phno').value.trim()
+											});
+											await auth.createUserWithEmailAndPassword(username,document.getElementById('passwd').value.trim());
+											alert('Successfully resgitered.\nLogin with your new Credentials.\nThank you for for registering');
+											document.getElementById('finalreg').innerHTML= `<span class="fa fa-solid fa-registered"></span>  Register`
+										}
+									}
+								}
+
+
+							}
+						}
+
+
+						
+
+					}
+				}
+				
+				
+			}
+		}
+
+	}
+
+</script>
+<script type='text/javascript'>
+
+	
+	/**/
+
+</script>
+</html>
