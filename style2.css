@@ -1,7 +1,7 @@
 @font-face{
-	src:url('assets/JosefinSansLight.ttf');
+	src:url('assets/Lato-Medium.ttf');
 	font-family: Josefin;
-	font-weight:light;
+
 }
 @font-face{
 	src:url('assets/JosefinSansBoldItalic.ttf');
@@ -40,7 +40,7 @@ body{
 .anchors{
 	text-decoration:none;
 	color:black;
-	font-family:Josefin-bold;
+	font-family:Josefin;
 	font-size:20px;
 	padding:15px;
 	border-radius:10px;
@@ -124,7 +124,7 @@ body{
 
 
 h1,h2,h3,h4,h5,h6{
-	font-family:Josefin-bold;
+	font-family:Josefin;
 }
 .proceed{
 	height:8vh;
@@ -213,5 +213,9 @@ h1,h2,h3,h4,h5,h6{
 	letter-spacing:1.5px;
 	text-decoration:underline;
 	text-decoration-color:white;
+
+}
+button:hover{
+	cursor:pointer;
 
 }
