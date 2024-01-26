@@ -1,0 +1,217 @@
+@font-face{
+	src:url('assets/JosefinSansLight.ttf');
+	font-family: Josefin;
+	font-weight:light;
+}
+@font-face{
+	src:url('assets/JosefinSansBoldItalic.ttf');
+	font-family: Josefin-bold-italic;
+}
+
+@font-face{
+	src:url('assets/JosefinSansBold.ttf');
+	font-family: Josefin-bold;
+}
+@font-face{
+	src:url('assets/JosefinSansSemiBold.ttf');
+	font-family: Josefin-semibold;
+}
+
+@font-face{
+	src:url('assets/JosefinSansThinItalic.ttf');
+	font-family: Josefin-thinitalic;
+}
+@font-face{
+	src:url('assets/JosefinSansLightItalic.ttf');
+	font-family: Josefin-lightitalic;
+}
+@font-face{
+	src:url('assets/JosefinSansRegular.ttf');
+	font-family: Josefin-regular;
+}
+@font-face{
+	src:url('assets/JosefinSansThin.ttf');
+	font-family: Josefin-thin;
+}
+body{
+	margin:0;
+	padding:0;
+}
+.anchors{
+	text-decoration:none;
+	color:black;
+	font-family:Josefin-bold;
+	font-size:20px;
+	padding:15px;
+	border-radius:10px;
+	transition:0.5s;
+}
+.anchors:hover{
+	box-shadow:inset 7px 0px 0px 0px #04ba1c,
+	inset -7px 0px 0px 0px #04ba1c,
+	inset 0px 2px 0px 0px navy,
+	inset 0px -2px 0px 0px navy;
+	text-decoration:underline;
+	text-decoration-color:black;
+}
+.signup{
+	text-decoration:none;
+	color:white;
+	padding:15px;
+	font-family:Josefin-bold;
+	font-size:20px;
+	border-radius:10px;
+	transition:0.5s;
+	animation-name:wipe;
+	animation-duration:4s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forwards;
+}
+@keyframes wipe{
+	0%{
+		background:white;
+	}
+	5%{
+		box-shadow:inset 200px 0px 0px 0px navy;
+		color:white;
+	}
+	50%{
+		box-shadow:inset -200px 0px 0px 0px white;
+		color:black;
+	}
+	75%{
+		box-shadow:inset 200px 0px 0px 0px navy;
+		color:white;
+	}
+	95%{
+		box-shadow:inset -200px 0px 0px 0px white;
+		color:black;
+	}
+}
+.signup:hover{
+	animation:none;
+	text-decoration: underline;
+	text-decoation-color:white;
+	box-shadow:inset 200px 0px 0px 0px #56b863;
+
+	
+
+}
+.registernow{
+	background: black;
+	border-radius:8px;
+	color:white;
+	padding:5px;
+	font-family: Josefin-bold;
+	font-size:40px;
+	position:absolute;
+	left:20%;
+	transition:0.3s;
+	text-decoration:none;
+
+
+
+}
+.registernow:hover{
+	cursor:pointer;
+	background: #039dfc;
+	border-width:0px;
+
+}
+
+
+
+
+
+h1,h2,h3,h4,h5,h6{
+	font-family:Josefin-bold;
+}
+.proceed{
+	height:8vh;
+	font-family: Josefin;
+	background:white;
+	border-width:1px;
+	border-radius:5px;
+	transition:0.5s;
+
+}
+.proceed:hover{
+	cursor:pointer;
+	background: green;
+	color:white;
+
+}
+.inputbox{
+	position:relative;
+	width:25vw;
+}
+.inputbox input{
+	width:100%;
+	height:6vh;
+	border-radius:5px;
+	outline:none;
+
+}
+.inputbox input:focus{
+	border:2px solid navy;
+	outline:none;
+}
+.inputbox label{
+	pointer-events: none;
+	font-family:Josefin;
+	position:absolute;
+	top:25%;
+	left:2.5%;
+	color:grey;
+	transition:0.5s;
+	background:white;
+	padding:5px;
+
+}
+.inputbox input:valid ~ label{
+	left:55%;
+	top:-35%;
+	color:grey;
+	border-radius:5px;
+	border:0.5px solid navy;
+}
+.inputbox input:focus ~ label{
+	left:55%;
+	top:-35%;
+	color:navy;
+	border-radius:5px;
+	border:0.5px solid navy;
+
+}
+.inputbox input:disabled{
+	border:2px solid grey;
+
+}
+.inputbox input:disabled ~ label{
+	left:55%;
+	top:-32%;
+}
+
+#postsel{
+	width:60%;
+	height:5vh;
+	font-family:Josefin-regular;
+}
+.loginbtn{
+	background:purple;
+	color:white;
+	font-family:Josefin-regular;
+	width:6vw;
+	height:8vh;
+	border-radius:8px;
+	font-size:1rem;
+	border-width:0px;
+	transition:0.5s;
+}
+.loginbtn:hover{
+	cursor:pointer;
+	letter-spacing:1.5px;
+	text-decoration:underline;
+	text-decoration-color:white;
+
+}

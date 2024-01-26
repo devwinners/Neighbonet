@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <script src="https://kit.fontawesome.com/a1910bac18.js" crossorigin="anonymous"></script>
+    
+</head>
+<style>
+    html{
+        background: beige;
+    }
+    @font-face{
+        font-family: Josefin;
+        src:url('assets/JosefinSansBold.ttf');
+    }
+    h1,h2,h3,h4,h5,h6{
+        font-family:Josefin;
+    }
+    .anchors{
+        font-weight:bold;
+        font-size: 1.7em;
+        color:white;
+        text-decoration: none;
+        transition: 0.3s;
+
+    }
+
+    .anchors:hover{
+        color:#2884D8;
+        letter-spacing: 3px;
+        text-decoration: underline;
+    }
+    .dashbtns{
+        background: beige;
+        color: black;
+        width: 100%;
+        height:40px;
+        transition: 0.3s;
+        border-width:0.2px;
+    }
+    .dashbtns:hover{
+        cursor:pointer;
+        box-shadow:inset 20px 0px 0px 0px orange,inset 230px 0px 0px 0px black,inset -20px 0px 0px 0px orange;
+        color:white;
+        letter-spacing:2.8px;
+    }
+    .addnote{
+        width:150px;
+        height:50px;
+        background: blue;
+        color:white;
+        font-family: Verdana;
+        border-width:0px;
+        transition: 0.3s;
+    }
+    .addnote:hover{
+        cursor: pointer;
+        border-radius:30px;
+    }
+    .clear{
+        width:150px;
+        height:50px;
+        background: green;
+        color:white;
+        font-family: Verdana;
+        border-width:0px;
+        transition: 0.3s;
+    }
+    .clear:hover{
+        cursor: pointer;
+        border-radius:30px;
+    }
+    .entry{
+        width:300px;
+        height:40px;
+        border-radius:10px;
+    }
+
+</style>
+<body>
+    <br><br>
+    <!--<div style='transform:translateY(-50px);'>
+        <i class="fa-solid fa-user fa-3x" style="transform: translate(30px,50px);"></i>
+
+        <p style="transform:translate(100px,-10px);">Welcome,</p>
+        <button><span class="fa fa-solid fa-up-long"></span></button>
+        <p id='name' style="font-family: Impact;transform:translate(100px,-25px);color: brown;">Vikraman  TO_FILL</p>
+    </div>-->
+    <table style='width:100%;border-collapse: collapse;'>
+        
+        <tr style='background: #333;'>
+            <td style='width:20%;border-radius:15px 0px 0px 15px;'><h1 style='font-family:Verdana;font-size:36px;color:white;padding-left:10px;'>NeighboNet</h1></td>
+            <td style='width:30%;'></td>
+            <td style='width:10%;'><center><a class='anchors' href='index.html'>Home</a></center></td>
+            <td style='width:10%;'><center><a class='anchors' href='portfolio.html'>About</a></center></td>
+            <td style='width:10%;'><center><a class='anchors'>Services</a></center></td>
+            <td style='width:10%;'><center><a class='anchors'>Contact</a></center></td>
+            <td style='width:10%;'><center><a class='anchors' href='login.htm'>Login</a></center></td>
+
+
+
+        </tr>
+    </table>
+    <table style='width:100%;'>
+        <tr>
+            <td style='width:15%;'>
+                 <i class="fa-solid fa-user fa-3x" style="float:left;"></i>
+                 <p style='margin-left:10px;font-family: sans-serif;'>Welcome,<br><span id='name' style="font-family: Impact;color: brown;"></span></p>
+
+            </td>
+            <td style='width:85%;'></td>
+        </tr>
+
+
+    </table>
+    <br><br>
+    <table style='width:100%;'>
+        <tr>
+            <td style='width:15%;'>
+                <div id="dashboard" style="border: 1px solid black;border-radius:15px;width: 250px;">
+                    <center><h1 style="font-family: Cambria;"><span style='color:orange;' class='fa-solid fa-gauge'></span>  <b>  DASHBOARD</b></h1></center>
+                    
+                    
+                    <button class='dashbtns' id='townhall'>Townhall</button>
+                    <br><br>
+                    <button class='dashbtns' id='visapp'>Visitor Approval</button>
+                    <br><br>
+                    <button class='dashbtns' id='merch'>Merchandise</button>
+                    <br><br>
+                    <button class='dashbtns'>Bulletin Board</button>
+
+                    <br><br>
+                        
+                </div>
+                
+
+            </td>
+            <td style='width:85%;' id='content'>
+                <center>
+                    <div id='bulletinadd' style='border-radius:15px;width:80%;height:400px;background:white;'>
+                        <br>
+                        <center><h1>Bulletin Board</h1></center>
+                        <center><textarea id='bulletinnote' placeholder="Enter Message" style='resize:none;border-radius:10px;width:80%;height:200px;'></textarea></center>
+                        <center><button id='addnote' class='addnote'><span class="fa-solid fa-plus"></span>  Publish Note</button> <button id='clear' class='clear'><span class="fa-solid fa-left-long"></span>  Clear Text</button></center>
+
+                    </div>
+
+
+                </center>
+
+            </td>
+
+        </tr>
+
+    </table>
+    
+
+    <!--<div>
+        <div id="Bulletin" style="margin-left: 150px;margin-top: -100px;width:800px;transform: translate(200px,-300px);">
+            <div class="container">
+                <h1 id="bth1"><center>Bulletin Board</center></h1>
+                <div class="button-container">
+                    <center><button id="addNote" style='transform: translate(-125px,60px);'>Add Note</button></center>
+                    <br>
+                    <hr>
+                </div>
+                <div class="bulletin">
+                    
+                </div>
+            </div>
+            <script src="script.js"></script>
+        </div>
+    </div>-->
+</body>
+
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
+<script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
+<script type='module'>
+    // Import the functions you need from the SDKs you need
+     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuUPN1d9YvLOXgMv9A0DItNo_IKo2SYew",
+      authDomain: "hackathon-handlers.firebaseapp.com",
+      projectId: "hackathon-handlers",
+      storageBucket: "hackathon-handlers.appspot.com",
+      messagingSenderId: "1030547854386",
+      appId: "1:1030547854386:web:bd3f2713fb275aef60d82b",
+      measurementId: "G-5Y71Q1NXQC"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth=firebase.auth();
+    const db=firebase.firestore();
+    const storage=firebase.storage();
+    var widgets={};
+    var details={}
+    var creds=JSON.parse(window.sessionStorage.getItem('user'));
+
+    if (creds[2]=='admin'){
+        await db.collection('admins').doc(creds[0]).get().then(async function(g){
+            document.getElementById('name').innerHTML='   '+await g.data().name
+            details=await g.data()
+
+        });
+        document.getElementById('clear').onclick=function(){
+            document.getElementById('bulletinnote').value='';
+
+        }
+        document.getElementById('addnote').onclick=async function(){
+            var notekey=new Date()+'_'+creds[0].split('.')[2].split('@')[0];
+            if (document.getElementById('bulletinnote').value.trim().length==0){
+                alert('No message entered');
+
+            }
+            else{
+                await db.collection('announce').doc(notekey).set({
+                    message:document.getElementById('bulletinnote').value.trim(),
+                    author:details.designation + ' ('+details.name+')'
+                })
+                alert('Message published successfully');
+                document.getElementById('bulletinnote').value='';
+
+            }
+            /*await db.collection('announce').doc(notekey).set()*/
+
+            /*<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>
+        */
+
+        }
+        widgets['board']=[document.getElementById('bulletinadd')]
+    }
+    else{
+        document.getElementById('bulletinadd').remove();
+        console.log(creds[0])
+        await db.collection('residents').doc(creds[0]).get().then(async function(g){
+           
+            document.getElementById('name').innerHTML='   '+await g.data().name
+            details=await g.data()
+
+        });
+        var bulletin=document.createElement('div');
+        bulletin.setAttribute('id','residentbullet')
+        bulletin.style='margin:auto;width:80%;height:400px;max-height:400px;overflow-y:auto;background:white;border-radius:15px;';
+        bulletin.innerHTML=`<center><h1>Bulletin Board</h1></center>
+        <div style='width:100%;height:200px;max-height:200px;overflow-y:auto;'>
+            <table style='width:100%;border-collapse:collapse;' id='board'>
+                <tr>
+                    <th style='background:#2884D8;color:white;height:40px;width:20%;'>Date</th>
+                    <th style='background:#2884D8;color:white;height:40px;width:20%;'>Author</th>
+                    <th style='background:#2884D8;color:white;height:40px;width:60%;'>Message</th>
+                </tr>
+
+            </table>
+
+        </div>
+        `
+        document.getElementById('content').appendChild(bulletin);
+        var announcements={};
+        await db.collection('announce').get().then(async function(g){
+            g.docs.map(async function(f){
+                if (f.id.includes(creds[0].split('.')[1].split('@')[0])==true){
+                    announcements[f.id]=await f.data();
+
+                }
+            })
+        });
+        for (let m in announcements){
+            var tr=document.createElement('tr');
+            tr.innerHTML=`
+            <td style='width:20%;'>`+m.split('_')[0]+`</td>
+            <td style='width:20%;'><center>`+announcements[m].author+`</center></td>
+            <td style='width:60%;'>`+announcements[m].message+`</td>
+            `;
+            document.getElementById('board').appendChild(tr);
+
+            
+
+        }
+        widgets['board']=[document.getElementById('residentbullet')];
+    }
+    if (creds[0].split('.')[1]=='security'){
+        document.getElementById('visapp').onclick=async function(){
+            for (let m in widgets){
+                for (let k in m){
+                    console.log(widgets[m][k])
+
+                    if (widgets[m][k]!=null || widgets[m][k]!=undefined){
+                        widgets[m][k].remove()
+                    }
+                }
+            }
+            var div=document.createElement('div');
+            div.setAttribute('id','ledger');
+            div.style='margin:auto;background:white;border-radius:5px;width:80%;height:400px;';
+            document.getElementById('content').appendChild(div);
+            var heading=document.createElement('center');
+            heading.innerHTML=`<h1>Update In and Out Details</h1>`;
+            document.getElementById('ledger').appendChild(heading);
+            document.getElementById('ledger').appendChild(document.createElement('br'));
+            document.getElementById('ledger').appendChild(document.createElement('br'));
+            var person=document.createElement('center');
+            person.innerHTML=`<input type='text' id='person' placeholder='Enter Entry Person' class='entry'>`;
+            document.getElementById('ledger').appendChild(person);
+            document.getElementById('ledger').appendChild(document.createElement('br'));
+            var timein=document.createElement('center');
+            timein.innerHTML=`<input id='timein' onfocus='(this.type="time")' onfocusout='(this.type="text")' placeholder='Enter Time in' class='entry'>`;
+            document.getElementById('ledger').appendChild(timein);
+            document.getElementById('ledger').appendChild(document.createElement('br'));
+            var timeout=document.createElement('center');
+            timeout.innerHTML=`<input id='timeout' onfocus='(this.type="time")' onfocusout='(this.type="text")' placeholder='Enter Time Out' class='entry'>`;
+            document.getElementById('ledger').appendChild(timeout);
+            document.getElementById('ledger').appendChild(document.createElement('br'));
+            var purpose=document.createElement('center');
+            purpose.innerHTML=`<input id='purpose' type='text' placeholder='Enter Purpose of Visit' class='entry'>`;
+            document.getElementById('ledger').appendChild(purpose);
+            document.getElementById('ledger').appendChild(document.createElement('br'));
+            var addbtn=document.createElement('center');
+            addbtn.innerHTML=`<button class='addnote'><span class="fa-solid fa-plus"></span>  Add to Database</button>`;
+            document.getElementById('ledger').appendChild(addbtn);
+            var existence=false;
+            addbtn.onclick=async function(){
+                await db.collection('ledger').get().then(async function(g){
+                    g.docs.map(async function(f){
+                        console.log(f.id.split('.')[1]==creds[0].split('.')[2])
+                        if (f.id.split('.')[1]==creds[0].split('.')[2]){
+                            var d=new Date();
+                            var tdate=d.getFullYear().toString()+'-'+(parseInt(d.getMonth())+1).toString().padStart(2,'0')+'-'+d.getDate().toString();
+                            console.log(tdate)
+                            if (f.id.split('.')[0]==tdate){
+                                var inside;
+                                var out;
+                                var key=document.getElementById('timein').value.toString()+'-'+document.getElementById('timeout').value.toString()
+                                var value=[document.getElementById('person').value,document.getElementById('purpose').value]
+                                console.log(key,value)
+                                await db.collection('ledger').doc(f.id).update({[key]:value});
+
+
+                            }
+
+                        }
+                        else{
+
+                        }
+                    })
+
+                })
+
+            }
+        
+        
+
+
+            
+            
+
+            
+        }
+
+    }
+    else{
+        document.getElementById('visapp').onclick=async function(){
+            for (let m in widgets){
+                for (let k in m){
+                    console.log(widgets[m][k])
+
+                    if (widgets[m][k]!=null || widgets[m][k]!=undefined){
+                        widgets[m][k].remove()
+                    }
+                }
+            }
+            var entry=document.createElement('div');
+            entry.style='background:white;width:80%;margin:auto;height:400px;max-height:400px;'
+            entry.setAttribute('id','entry');
+            document.getElementById('content').appendChild(entry);
+            var table=document.createElement('table');
+            table.style='width:100%;border-collapse:collapse;'
+            table.setAttribute('id','diary')
+            table.innerHTML=`
+            <tr>
+                <th style='width:25%;height:40px;background:blue;color:white;'>Person</th>
+                <th style='width:25%;height:40px;background:blue;color:white;'>Purpose of Visit</th>
+                <th style='width:25%;height:40px;background:blue;color:white;'>Time in</th>
+                <th style='width:25%;height:40px;background:blue;color:white;'>Time Out</th>
+            </tr>;
+            `;
+            document.getElementById('entry').appendChild(table)
+            await db.collection('ledger').get().then(async function(g){
+                g.docs.map(async function(f){
+                    var dict=await f.data();
+                    for (let u in dict){
+                        var row=document.createElement('tr');
+                        row.innerHTML=`
+                        <td style='width:25%;border:1px solid black;'><center>`+dict[u][0]+`</center></td>
+                        <td style='width:25%;border:1px solid black;'><center>`+dict[u][1]+`</center></td>
+                        <td style='width:25%;border:1px solid black;'><center>`+u.split('-')[0]+`</center></td>
+                        <td style='width:25%;border:1px solid black;'><center>`+u.split('-')[1]+`</center></td>`;
+                        document.getElementById('diary').appendChild(row);
+
+                    }
+                    
+
+                })
+            })
+        }
+        
+        
+
+
+
+    }
+    document.getElementById('merch').onclick=async function(){
+        window.open('marketplace.html');
+    }
+    
+
+    
+    document.getElementById('townhall').onclick=function(){
+        window.open('townhall1.html');
+        /*for (let m in widgets){
+            for (let k in m){
+                if (widgets[m][k]!=null){
+                    widgets[m][k].remove()
+                }
+            }
+        }
+        var polldiv=document.createElement('div');
+        polldiv.setAttribute('id','polldiv')
+        polldiv.style='width:80%;height:400px;border-radius:15px;background:white;margin:auto;';
+        polldiv.innerHTML=`
+        <br>
+        <button class='addnote' id='createpoll'><span class="fa-solid fa-square-poll-vertical"></span>  Create a Poll</button>
+        `;
+        var options={};
+        document.getElementById('content').appendChild(polldiv);
+        document.getElementById('createpoll').onclick=async function(){
+            document.getElementById('createpoll').disabled=true;
+            document.getElementById('createpoll').style.background='grey';
+            document.getElementById('polldiv').appendChild(document.createElement('br'));
+            document.getElementById('polldiv').appendChild(document.createElement('br'));
+            var optdiv=document.createElement('center');
+            optdiv.innerHTML=`
+            <div style='background:white;max-height:300px;overflow-y:auto;'>
+                <center><input type='text' class='entry' style='margin:auto;' placeholder='Enter the question'></center>
+                <br><br>
+                <center><input class='entry' style='margin:auto;' onfocus='(this.type="date")' onfocusout='(this.type="text")' placeholder='Enter date of expiration of poll'></center>
+                <br><br>
+                <center><input type='text' class='entry' placeholder='Enter Option'> <button id='option1' class='clear'><span class="fa-solid fa-plus"></span>  Add Option</button></center>
+            </div>
+
+            `
+            var ques=document.createElement('input');
+            ques.style='margin:auto;'
+            ques.setAttribute('class','entry')
+            ques.type='text';
+            ques.placeholder='Enter the question';
+            document.getElementById('polldiv').appendChild(ques);
+            document.getElementById('polldiv').appendChild(document.createElement('br'));
+            var date=document.createElement('input');
+            date.setAttribute('class','entry')
+            date.style='margin:auto;'
+            date.type='date';
+            date.placeholder='Enter date of expiration';
+            document.getElementById('polldiv').appendChild(date);
+            document.getElementById('polldiv').appendChild(document.createElement('br'));
+            var optno=1
+            var option=document.createElement('center');
+            option.innerHTML=`<input type='text' placeholder='Enter Option' class='entry'>  <button id='option1' class='clear'><span class="fa-solid fa-plus"></span>  Add Option</button>`
+            option.style='margin:auto;'
+            document.getElementById('polldiv').appendChild(optdiv)
+
+
+        }*/
+
+    }
+        
+
+</script>
+</html>

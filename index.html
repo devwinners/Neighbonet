@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeighboNet | Official WebPage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style2.css"/>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow-x:hidden;
+            padding:0;
+        }
+
+        header {
+            background-color:#333;
+            color: #fff;
+            padding: 10px 0;
+            height: 70px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+            padding: 20px;
+            font-size: 1.3em;
+        }
+
+        nav a:hover {
+            color: #ff5733;
+            font-size: 1.5em;
+            
+        }
+
+
+        #title {
+            font-size: 36px;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        
+
+        #text {
+            text-align: center;
+            color: black; /* Text color */
+        }
+        @keyframes fadein{
+            from{
+                opacity:0;
+            }
+            to{
+                opacity:1;
+            }
+        }
+        .container{
+            margin-top:50px;
+            height:150px;
+            width: 350px;
+            background-color: rgb(244, 168, 76);}
+        
+        .register-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 25px;
+            font-family: Verdana;
+            text-align: center;
+            text-decoration: none;
+            background-color: black; /* Blue background color */
+            color: white; /* White text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+        }
+
+        .register-button:hover {
+            background-color: #2980b9; /* Slightly darker blue on hover */
+        }/*
+        td{
+            border:1px solid black;
+        }*/
+    </style>
+</head>
+<body>
+    <div style='z-index:11000;position:fixed;box-shadow:2px 2px 20px 2px black;width:99vw;height:12vh;border-radius:8px;background: white;'>
+        <table style='width:100%;height:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:20%;'>
+                    <center><h1><b>NeighboNet</b></h1></center>
+                </td>
+                <td style='width:40%;'></td>
+                <td style='width:8%;'><center><a class='anchors' href='#about'>About</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' href='#services'>Services</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' href='#contact'>Contact</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' href='login.htm' target="_blank">Login</a></center></td>
+                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+    <center><div style='background-image: url("Images/About BG.png");background-repeat: no-repeat;width:99vw;height:70vh;background-size: cover;background-position: 10% 15%;'>
+        <center><h1 style='color:white;top:15%;left:26%;position:absolute;'>NeighboNet - Innovation Meets Community</h1></center>
+        <!-- <img src="Images/About BG (2).png" id="aboutbg" style="margin-top: 30px;width: 1200px;height: 500px;animation-name:fadein;animation-duration:4s;animation-fill-mode:forawrds;border-radius:15px;"> -->
+    </div></center>
+
+
+
+    <!-- <center><div id="top1">
+        <div class="overlay"></div> 
+        <img src="Images/About BG (2).png" id="aboutbg" style="margin-top: 30px;width: 1200px;height: 500px;animation-name:fadein;animation-duration:4s;animation-fill-mode:forawrds;border-radius:15px;">
+        </div></center> -->
+    <!-- <div id="about" style="display: flex;margin-top: 50px;">
+        <img src="Images/About_Us.png" style="border-radius:10px;box-shadow:2px 2px 15px 8px #0c3c2b;height: 475px;width: 468px;margin-left: 40px;">
+        
+        <h1 style="margin-top: 60px;transform: translate(-150px,-5px);font-family: sans-serif;">About Us</h1>
+        <h3 style="font-family: Segoe UI;margin-top:120px;margin-left: -400px;">NeighboNet isnt just an app; we're a transformative force, reshaping</h3>
+        <h3 style="font-family: Segoe UI;margin-top:160px;margin-left: -600px;">communities for a brighter future.</h3>
+        <h3 style="font-family: Segoe UI;margin-top:220px;margin-left: -300px;">We empower residents and prioritize security, efficiency, and safety.</h3>
+        <h3 style="font-family: Segoe UI;margin-top:280px;margin-left: -600px;">Experience the future of community living with centralized</h3>
+        <h3 style="font-family: Segoe UI;margin-top:320px;margin-left: -515px;">updates, interactive townhall meetings, and accountability-driven </h3>
+        <h3 style="font-family: Segoe UI;margin-top:360px;margin-left: -580px;">maintenance schemes. </h3>
+        <h3 style="font-family: Segoe UI;margin-top:420px;margin-left: -200px;">Safety is paramount, with visitor tracking and pre-approval features.</h3>
+
+    </div> -->
+    <br><br>
+    <center><table id='about' style='width:99vw;height:100vh;border-collapse:collapse;'>
+        <tr>
+            <td style='width:10%;'></td>
+            <td style='width:30%;'>
+                <center><img src="Images/About_Us.png" style="border-radius:10px;box-shadow:2px 2px 15px 8px #0c3c2b;width:100%;height:70vh;"></center>
+            </td>
+            <td style='width:2%;'></td>
+            <td style='width:48%;'>
+                <center><h1><u>About Us</u></h1></center>
+                <br><br>
+                <center>
+                    <h2 style='line-height:30px;font-size:22px;font-family:Josefin-bold-italic;'>NeighboNet isn't just an app; we're a transformative force, reshaping communities for a brighter future.</h2>
+                    <br>
+                    <h2 style='line-height:30px;font-size:22px;font-family:Josefin-bold-italic;'>We empower residents and prioritize security, efficiency, and safety.</h2>
+                    <br>
+                    <h2 style='line-height:30px;font-size:22px;font-family:Josefin-bold-italic;'>Experience the future of community living with centralized maintenance schemes. </h2>
+                    <br>
+                    <h2 style='line-height:30px;font-size:22px;font-family:Josefin-bold-italic;'>Safety is paramount, with visitor tracking and pre-approval features.</h2>
+
+                </center>
+            </td>
+            <td style='width:10%;'></td>
+    </table></center>
+    <center><div id='services' style='width:90vw;border-radius:8px;box-shadow:2px 2px 20px 4px navy;'>
+        <br>
+        <center><h1><u>SERVICES</u></h1></center>
+        <!-- <center><table style='width:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:10%;'></td>
+                <td style='width:30%;'>
+                    <center><img style='width:100%;' src='Images/board.png'></center>
+                </td>
+                <td style='width:70%;'>
+                    <center><h1><span style='padding:8px;' class='fa fa-solid fa-list'></span><u>Centralized Bulletin Board :</u></h1></center>
+                    <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>A centralized, user-friendly bulletin board is pivotal for streamlined communication among residents, offering a dynamic platform for accessing diverse community updates. It consolidates announcements, events, and essential resources, fostering inclusivity and active engagement. The system's intuitive interface caters to varying technological proficiencies, ensuring accessibility. Beyond information dissemination, it cultivates community cohesion by facilitating collaboration and discussions. Real-time notifications and personalized settings enhance the user experience, tailoring updates to individual preferences. In summary, this bulletin board serves as a comprehensive hub, empowering residents to stay well-informed, actively participate, and contribute to the vibrancy of their shared living space.</h3></center>
+
+                </td>
+                <td style='width:10%;'></td>
+            </tr>
+        </table></center> -->
+        <br>
+        <center><table style='width:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:10%;'></td>
+                <td style='width:30%;'>
+                    <center><img style='width:100%;border-radius:10px;' src='Images/board.png'></center>
+                </td>
+                <td style='width:50%;'>
+                    <center><h1><u>Centralized Bulletin Board :</u></h1></center>
+                    <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>A centralized, user-friendly bulletin board is pivotal for streamlined communication among residents, offering a dynamic platform for accessing diverse community updates. It consolidates announcements, events, and essential resources, fostering inclusivity and active engagement. The system's intuitive interface caters to varying technological proficiencies, ensuring accessibility. Beyond information dissemination, it cultivates community cohesion by facilitating collaboration and discussions. Real-time notifications and personalized settings enhance the user experience, tailoring updates to individual preferences. In summary, this bulletin board serves as a comprehensive hub, empowering residents to stay well-informed, actively participate, and contribute to the vibrancy of their shared living space.</h3></center>
+
+                </td>
+                <td style='width:10%;'></td>
+            </tr>
+            <tr>
+                <td style='width:10%;'></td>
+                <td style='width:30%;'>
+                    <center><img style='width:100%;border-radius:10px;' src='Images/virtual-townhall.png'></center>
+                </td>
+                <td style='width:50%;'>
+                    <center><h1><u>Virtual TownHall :</u></h1></center>
+                    <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>The implementation of a virtual town hall serves as a vital forum for community engagement, fostering discussions and polls related to significant committee meetings. This innovative platform actively encourages residents to voice their opinions, amplifying interaction within the community. By providing a space for open dialogue and inclusive decision-making, the virtual town hall becomes a cornerstone for transparent communication. Residents gain a participatory role in shaping important outcomes, enhancing their sense of belonging and empowerment. The seamless integration of discussions and polls not only enriches the decision-making process but also strengthens the communal fabric by acknowledging and valuing diverse perspectives.</h3></center>
+                </td>
+                <td style='width:10%;'></td>
+            </tr>
+            <tr>
+                <td style='width:10%;'></td>
+                <td style='width:30%;'>
+                    <center><img style='width:100%;border-radius:10px;' src='Images/security.jpg'></center>
+                </td>
+                <td style='width:50%;'>
+                    <center><h1><u>Enhanced Security & Visitor Pre-Approval :</u></h1></center>
+                    <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>The implementation of a virtual town hall serves as a vital forum for community engagement, fostering discussions and polls related to significant committee meetings. This innovative platform actively encourages residents to voice their opinions, amplifying interaction within the community. By providing a space for open dialogue and inclusive decision-making, the virtual town hall becomes a cornerstone for transparent communication. Residents gain a participatory role in shaping important outcomes, enhancing their sense of belonging and empowerment. The seamless integration of discussions and polls not only enriches the decision-making process but also strengthens the communal fabric by acknowledging and valuing diverse perspectives.</h3></center>
+                </td>
+                <td style='width:10%;'></td>
+            </tr>
+        </table></center>
+
+        
+       <!--  <center><h1><span style='padding:8px;' class='fa fa-solid fa-list'></span><u>Centralized Bulletin Board :</u><span style='font-family: Josefin-thinitalic;line-height:50px;'> A centralized and user-friendly bulletin board, which helps residents to be updated to date from where ever they are. This helps in streamlining the communication.</span></h1></center>
+        <br><br>
+        <center><h1><span style='padding:8px;' class='fa fa-solid fa-building'></span><u>Virtual TownHall:</u><span style='font-family: Josefin-thinitalic;line-height:50px;'> A virtual townhall for discussions and polls about important meetings which is it be conducted by the committee. This helps in increasing the resident interaction in the community by encouraging them to voice their opinions.</span></h1></center>
+        <br><br>
+         <center><h1><span style='padding:8px;' class='fa fa-solid fa-file-shield'></span><u>Enhanced Security & Visitor pre-approval: </u><span style='font-family: Josefin-thinitalic;line-height:50px;'> A dedicated space for security personnel to record visitor information through our simplified process. An visitor pre approval feature is also implemented which helps in streamlining the entry process making arrival process smoother</span></h1></center> -->
+    </div></center>
+
+
+    <!--<div id="services">
+        <h1 style="margin-left: 600px;margin-top: 50px;">SERVICES</h1>
+            
+        <div class="card-category-1">
+            
+            <div class="basic-card basic-card-aqua box">
+                <div class="card-content">
+                    <span class="card-title">Centralized Bulletin Board</span>
+                    <p class="card-text">
+                        A centralized and user-friendly bulletin board, which helps residents to be updated to date from where ever they are. This helps in streamlining the communication.<br><br>
+                    </p>
+                </div>
+
+                <div class="card-link">
+                    <a href="#" title="Read Full"><span></span></a>
+                </div>
+            </div>
+
+            <div class="basic-card basic-card-lips box">
+                <div class="card-content">
+                    <span class="card-title">Virtual Townhall</span>
+                    <p class="card-text">
+                        A virtual townhall for discussions and polls about important meetings which is it be conducted by the committee. This helps in increasing the resident interaction in the community by encouraging them to voice their opinions.<br><br><br>
+                    </p>
+                </div>
+
+                <div class="card-link">
+                    <a href="#" title="Read Full"><span></span></a>
+                </div>
+            </div>
+
+           
+
+            <div class="basic-card basic-card-dark box">
+                <div class="card-content">
+                    <span class="card-title">Enhanced Security & Visitor pre-approval</span>
+                    <p class="card-text">
+                        A dedicated space for security personnel to record visitor information through our simplified process. An visitor pre approval feature is also implemented which helps in streamlining the entry process making arrival process smoother
+                    </p>
+                </div>
+
+                <div class="card-link">
+                    <a href="#" title="Read Full"><span></span></a>
+                </div>
+            </div>
+            
+        </div>
+
+        
+        <br/>
+        <div class="container" style="margin-left: 60px;">
+            <h2 style="transform: translate(20px,20px);">Centralized Bulletin Board</h2>
+            <h3 style="padding: 5px;"><center>A centralized and userfriendly bulletin board, which helps residents to be updated to date from where ever they are.</center></h3>
+        </div>
+
+        <div class="container" style="margin-left: 60px;">
+            <h2 style="transform: translate(20px,20px);">Virtual Townhall</h2>
+            <h3 style="padding: 5px;"><center>A virtual townhall for discussions and polls about important meetings which is it be conducted by the committee.</center></h3>
+        </div>
+    </div> -->
+
+    <!-- <div id="reg_now">
+        <img src="Images/Reg_Bg.jpeg" style="height: 420px;width: 1100px;border-radius: 20px;transform: translateX(60px);">
+        <a href="neighbor_reg.htm" class="register-button" style="transform: translate(-980px,-200px);">Register Now</a>
+    </div>
+
+    <div id="contact">
+        <i class="fa-regular fa-envelope fa-4x" style="color: black;margin-left: 95px;"></i>
+        <h2 style="margin-top: -45px;margin-left: 200px;font-size: 2em;color: black;">hhupgrad@gmail.com
+        </h2>
+        
+        <i class="fa-solid fa-phone fa-3x" style="color: black;margin-left: 100px;"></i>
+        <h2 style="margin-top: -38px;margin-left: 200px;font-size: 2em;color: black;">+91 1234 567 890</h2>
+
+    </div> -->
+    <br><br>
+    <center><div style='width:80vw;height:60vh;border-radius:10px;background-image:url("Images/Reg_Bg.jpeg");background-repeat:no-repeat;background-size: cover;'>
+        <br><br><br><br><br><br><br><br><br>
+        <a class='registernow' href="neighbor_reg.htm">Register Now</a>
+
+    </div></center>
+    <br><br>
+    <center><div id='contact'>
+        <center><h4>Mail: <a href='mailto:hhupgrad@gmail.com'>hhupgrad@gmail.com</a></h4></center>
+        <center><h4>Contact No.: +91 12345 67890</h4></center>
+    </div></center>
+
+    
+</body>
+<script>
+    
+    function reg(){
+        window.open('neighbor_reg.htm');
+    }
+</script>
+</html>

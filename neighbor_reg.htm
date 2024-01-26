@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='icon' type='image/x-icon' href='https://github.com/VISHWAAR/storage/blob/main/icon.png?raw=true'>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
+	<link rel="stylesheet" href="style2.css"/>
+	<title>NeighboNet Register</title>
+</head>
+<style>
+	body{
+		margin:0;
+		padding:0;
+		overflow-x:hidden;
+	}
+	@font-face{
+        font-family: Josefin;
+        src:url('assets/JosefinSansBold.ttf');
+    }
+    h1,h2,h3,h4,h5,h6,label{
+        font-family:Josefin;
+    }
+	@keyframes fade{
+		from{
+			width:100%;
+		}
+		to{
+			width:0%;
+		}
+	}
+	.entry{
+		width:300px;
+		height:40px;
+		border-radius:10px;
+	}
+	.connect{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: white;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+
+	.connect:hover{
+		box-shadow:inset 200px 0px 0px 0px purple;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	@keyframes loading{
+		from{
+			transform:rotateZ(0deg);
+		}
+		to{
+			transform:rotateZ(360deg);
+		}
+	}
+	.condet{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: white;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	.condet:hover{
+		box-shadow:inset 200px 0px 0px 0px #d18502;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	.register{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:black;
+		background: whitesmoke;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	.register:hover{
+		box-shadow:inset 200px 0px 0px 0px #1552b3;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	.go{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:white;
+		background: #eab420;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	.go:hover{
+		box-shadow:inset 0px 60px 0px 0px #db330d;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	@keyframes fadein{
+		from{
+			opacity:0;
+		}
+		to{
+			opacity: 1;
+		}
+	}
+	#confirm_list{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:white;
+		background: grey;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	#confirm_list:hover{
+		box-shadow:inset 0px 60px 0px 0px #deecf2;
+		letter-spacing:3px;
+		color:black;
+		cursor:pointer;
+
+	}
+	#addtb{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:white;
+		background: grey;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	#addtb:hover{
+		box-shadow:inset 0px 60px 0px 0px #0e3ec4;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+
+	}
+	#addcom{
+		width:200px;
+		height:60px;
+		border-radius:16px;
+		color:white;
+		background: grey;
+		transition:0.3s;
+		border-width:0px;
+
+	}
+	#addcom:hover{
+		box-shadow:inset 0px 60px 0px 0px #07820f;
+		letter-spacing:3px;
+		color:white;
+		cursor:pointer;
+		-webkit-box-reflect:below 2px linear-gradient(transparent,transparent,black);
+
+	}
+	#step2{
+		height:100%;
+	}
+	#step3{
+		height:100%;
+	}
+	#step4{
+		height:100%;
+	}
+	
+
+
+</style>
+<body>
+	<div style='z-index:11000;position:fixed;box-shadow:2px 2px 20px 2px black;width:99vw;height:12vh;border-radius:8px;background: white;'>
+        <table style='width:100%;height:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:20%;'>
+                    <center><h1><b>NeighboNet</b></h1></center>
+                </td>
+                <td style='width:40%;'></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
+                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br>
+	
+	<center>
+		<div style='width:40%;height:700px;max-width:40%;max-height:700px;overflow-x:hidden;overflow-y: hidden;'>
+			<div class='inmatereg' style='transition:0.3s;background:black;width:100%;height:100%;border-radius:40px;opacity:0.8;border-width: 1px;border:1px solid #ab5849;'>
+				<img src='Images/About BG.png' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;'>
+
+				<center><h1 style='color:white;font-family: Verdana;'>Register with <u>NeighboNet</u></h1></center>
+				<br><br>
+				<center><label style='color:white;font-size:25px;'>
+					<input id='inmate' type='radio' style='border-radius:30px;width:25px;height:25px;'>  Register as Resident
+				</label></center>
+				<br><br>
+				<center><label style='color:white;font-size:25px;'>
+					<input id='community' type='radio' style='width:25px;height:25px;'>  Register as a Community
+				</label></center>
+			</div>
+			<div id='step2' style='display:none;'></div>
+			<!--<table style='width:100%;height:100%;'>
+				<tr>
+					<td id='step1' style='width:100%;'>
+
+						<div class='inmatereg' style='transition:0.3s;background:black;width:100%;height:100%;border-radius:40px;opacity:0.8;border-width: 1px;border:1px solid #ab5849;'>
+							<img src='Images/About BG.png' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;'>
+
+							<center><h1 style='color:white;font-family: Verdana;'>Register with <u>NeighboNet</u></h1></center>
+							<br><br>
+							<center><label style='color:white;font-size:25px;'>
+								<input id='inmate' type='radio' style='border-radius:30px;width:25px;height:25px;'>  Register as Resident
+							</label></center>
+							<br><br>
+							<center><label style='color:white;font-size:25px;'>
+								<input id='community' type='radio' style='width:25px;height:25px;'>  Register as a Community
+							</label></center>
+						</div>
+					</td>
+					<td id='step2' style='width:100%;'>
+						
+					</td>
+					<td id='step3' style='width:100%;'>
+
+						
+					</td>
+					<td id='step4' style='width:100%;'>
+						
+
+
+					</td>
+
+				</tr>
+			</table>-->
+
+
+
+	</div></center>
+
+	
+
+</body>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
+<script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
+<!-- <script data-main='require-config' src='require.js'></script> -->
+<!-- <script src='require.js'></script> -->
+<!-- <script src='https://requirejs.org/docs/release/2.3.5/minified/require.js'></script> -->
+
+<script type="module">
+	import {auth,db} from '/config.js'
+
+	
+	var residents={step2:`
+		<div class='inmatereg' id='inmatereg' style='background: white;width:100%;height:100%;;border-radius:40px;border:1px solid purple;'>
+							<img src='https://wallpaperaccess.com/full/32451.jpg?raw=true' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;'>
+							<center><h1>Connect with your Community</u></h1></center>
+							<center><input class='entry' id='comcode' type='text' placeholder="Enter your Community's registration code"></center>
+							<br>
+							<center><button class='connect' id='connectbtn'><span class="fa fa-solid fa-link"></span> Connect</button></center>
+						</div>`,
+						step3:`
+							<div style='z-index:11000;position:fixed;box-shadow:2px 2px 20px 2px black;width:99vw;height:12vh;border-radius:8px;background: white;'>
+						        <table style='width:100%;height:100%;border-collapse:collapse;'>
+						            <tr>
+						                <td style='width:20%;'>
+						                    <center><h1><b>NeighboNet</b></h1></center>
+						                </td>
+						                <td style='width:40%;'></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
+						                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+						            </tr>
+						        </table>
+						    </div>
+						    <br><br><br><br><br><br><br><br>
+
+						<div class='inmatereg' style='background: white;width:100%;height:100%;;border-radius:40px;border:1px solid #d18502;'>
+						<img src='https://c4.wallpaperflare.com/wallpaper/246/739/689/digital-digital-art-artwork-illustration-abstract-hd-wallpaper-preview.jpg?raw=true' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;'>
+							<center><h1 style='float:left;margin-left:10px;'>Register Yourself</u></h1></center>
+							<hr style='width:100%;height:0.2vh;border-width:0px;background:black;'>
+							<br><br><br>
+							<div style='display:flex;justify-content:space-evenly;'>
+								<div class='inputbox'>
+									<input id='name' required>
+									<label>Your Name</label>
+								</div>
+								<div class='inputbox'>
+									<input id='phno' required>
+									<label>Phone Number</label>
+								</div>
+								<div class='inputbox'>
+									<input id='addr' required>
+									<label>Postal Address</label>
+								</div>
+							</div>
+							<br><br>
+							<div style='display:flex;justify-content:space-evenly;'>
+								<div class='inputbox'>
+									<input id='block' required>
+									<label>Enter your Block</label>
+								</div>
+								<div class='inputbox'>
+									<input id='floor' required>
+									<label>Enter your Floor</label>
+								</div>
+								<div class='inputbox'>
+									<input id='doorno' required>
+									<label>Enter your Door No.</label>
+								</div>
+							</div>
+							<br><br><br>
+							<center><button class='condet' id='selfreg'><span class="fa fa-solid fa-tick"></span> Confirm Details</button></center>
+							<br><br>
+						</div>`,step4:`
+							<div style='z-index:11000;position:fixed;box-shadow:2px 2px 20px 2px black;width:99vw;height:12vh;border-radius:8px;background: white;'>
+						        <table style='width:100%;height:100%;border-collapse:collapse;'>
+						            <tr>
+						                <td style='width:20%;'>
+						                    <center><h1><b>NeighboNet</b></h1></center>
+						                </td>
+						                <td style='width:40%;'></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+						                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
+						                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+						            </tr>
+						        </table>
+						    </div>
+						    <br><br><br><br><br><br><br><br>
+
+							<div class='inmatereg' style='background: white;width:100%;height:100%;;border-radius:40px;border:1px solid #1552b3;'>
+							<img src='https://e0.pxfuel.com/wallpapers/895/79/desktop-wallpaper-abstract-circular-geometric-background-vector-speed-of-light-illustration-space-science-fiction-travel-warp-teleport-hyper-speed-jump-effect-concept-6945562-vector-art-at-vecteezy.jpg?raw=true' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;'>
+								<center><h1>Your Credentials</h1></center>
+								<center><div class='inputbox'>
+									<input required id='username'>
+									<label>Your Username</label>
+								</div></center>
+								<!---<center><label>Your Username:<br><center><input type='text' class='entry' id='username' disabled></center></label></center>
+								<center><label>Set Password:</label></center>--->
+								<br>
+								<center><input class='entry' type='password' id='passwd' class='entry' placeholder="Enter Password">  <button id='see' ><span class="fa fa-solid fa-eye"></span></button></center>
+								<br>
+								<center><input class='entry' type='password' id='conpasswd' class='entry' placeholder="Confirm Password">  <button id='consee'><span class="fa fa-solid fa-eye"></span></button></center>
+								<br>
+								
+								<center><button class='register' id='finalreg'><span class="fa fa-solid fa-registered"></span>  Register</button></center>
+								
+							</div>
+						`};
+	var community={step2:`
+
+	<div style='z-index:11000;position:fixed;margin:auto;box-shadow:2px 2px 20px 2px black;width:100vw;height:12vh;border-radius:8px;background: white;'>
+        <table style='width:100%;height:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:20%;'>
+                    <center><h1><b>NeighboNet</b></h1></center>
+                </td>
+                <td style='width:40%;'></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
+                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br>
+	<center><div style='background: white;width:90%;height:100%;;border-radius:40px;border:1px solid #db330d;animation-name:fadein;animation-fill-mode:forwards;animation-duration:2s;'> 
+		<img src='https://clipart-library.com/images/pcodx6Bxi.jpg?raw=true' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;'>
+
+		<center><h1 style='float:left;margin-left:10px;'>Register Your Community</h1></center>
+		<hr style='width:100%;height:0.2vh;border-width:0px;background:black;'>
+		<br><br><br>
+		<div style='display:flex;justify-content:space-evenly;'>
+			<div class='inputbox'>
+				<input required id='flat'>
+				<label>Community Name<span style='color:red;'>*</span></label>
+			</div>
+
+			<div class='inputbox'>
+				<input required id='assc'>
+				<label>Association Name<span style='color:red;'>*</span></label>
+			</div>
+
+			<div class='inputbox'>
+				<input required id='addr'>
+				<label>Address<span style='color:red;'>*</span></label>
+			</div>
+
+		</div>
+		<br><br>
+		<div style='display:flex;justify-content:space-evenly;'>
+			<div class='inputbox'>
+				<input required id='blocks'>
+				<label>No. of Blocks<span style='color:red;'>*</span></label>
+			</div>
+
+			<div class='inputbox'>
+				<input required id='floor'>
+				<label>Floors per block<span style='color:red;'>*</span></label>
+			</div>
+
+			<div class='inputbox'>
+				<input required id='total'>
+				<label>Total No. of Flats<span style='color:red;'>*</span></label>
+			</div>
+
+		</div>
+		<br><br>
+
+		<center><button id='continue' class='go'><span class="fa fa-solid fa-right-long"></span>  Continue</button></center>
+		<br><br>
+	</div></center>`,
+	step3:`
+	<div style='z-index:11000;position:fixed;margin:auto;box-shadow:2px 2px 20px 2px black;width:100vw;height:12vh;border-radius:8px;background: white;'>
+        <table style='width:100%;height:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:20%;'>
+                    <center><h1><b>NeighboNet</b></h1></center>
+                </td>
+                <td style='width:40%;'></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
+                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br>
+
+	<div style='background: white;max-height:700px;overflow-y:auto;width:100%;height:100%;;border-radius:40px;border:1px solid #db330d;'>
+		<img src='https://res.cloudinary.com/people-matters/image/upload/q_auto,f_auto/v1593664406/1593664404.jpg?raw=true' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;object-position:0px -50px;'>
+		<center><h1 style='font-family:Verdana;'>Office Bearers</h1></center>
+		<center><table style='width:100%;height:100%;'>
+			<tr>
+				<td style='width:50%;'>
+					<center><table style='width:80%;border-collapse:collapse;' id='bearers'>
+						<tr>
+							<th style='width:50%;background:#2884D8;color:white;'>Designation</th>
+							<th style='width:50%;background:#2884D8;color:white;'>Office Bearer</th>
+
+
+						</tr>
+						<tr>
+							<td style='width:50%;border:1px solid black;height:50px;'><center>President</center></td>
+							<td style='width:50%;border:1px solid black;height:50px;' id='tdpres'></td>
+						</tr>
+						<tr>
+							<td style='width:50%;border:1px solid black;height:50px;'><center>Vice President</center></td>
+							<td style='width:50%;border:1px solid black;height:50px;' id='tdvp'></td>
+						</tr>
+						<tr>
+							<td style='width:50%;border:1px solid black;height:50px;'><center>Secretary</center></td>
+							<td style='width:50%;border:1px solid black;height:50px;' id='tdsecr'></td>
+						</tr>
+						<tr>
+							<td style='width:50%;border:1px solid black;height:50px;'><center>Treasurer</center></td>
+							<td style='width:50%;border:1px solid black;height:50px;' id='tdtreas'></td>
+						</tr>
+						<tr>
+							<td style='width:50%;border:1px solid black;height:50px;'><center>Maintanence</center></td>
+							<td style='width:50%;border:1px solid black;height:50px;' id='tdmaint'></td>
+						</tr>
+						<tr>
+							<td style='width:50%;border:1px solid black;height:50px;'><center>Security</center></td>
+							<td style='width:50%;border:1px solid black;height:50px;' id='tdsecu'></td>
+						</tr>
+
+
+					</table></center>
+				</td>
+				<td style='width:50%;'>
+					<center><div>
+						<center><select id='postsel'>
+							<option id='default' value='default'>--Select Office Bearers--</option>
+							<option id='pres' value='pres'>President</option>
+							<option id='vp' value='vp'>Vice President</option>
+							<option id='secr' value='secr'>Secretary</option>
+							<option id='treas' value='treas'>Treasurer</option>
+							<option id='maint' value='maint'>Maintanence</option>
+							<option id='secu' value='secu'>Security</option>
+						</select></center>
+						<br><br>
+						<div class='inputbox'>
+							<input required id='bearername'>
+							<label>Office Bearer's name</label>
+						</div>
+						<br><br>
+						<center><button id='addtb'><span class='fa fa-solid fa-plus'></span> Add to List</center>
+					</div></center>
+
+				</td>
+			</tr>
+		</table></center>
+		<br>
+		<center><button id='confirm_list'><span class='fa fa-solid fa-check'></span>  Submit List</button></center>
+	</div>`,step4:`
+
+	<div style='z-index:11000;position:fixed;margin:auto;box-shadow:2px 2px 20px 2px black;width:100vw;height:12vh;border-radius:8px;background: white;'>
+        <table style='width:100%;height:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:20%;'>
+                    <center><h1><b>NeighboNet</b></h1></center>
+                </td>
+                <td style='width:40%;'></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
+                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br>
+	<center><div style='background: white;width:90%;height:100%;max-height:700px;overflow-y:auto;border-radius:40px;border:1px solid #db330d;'>
+	<img src='https://assets-news.housing.com/news/wp-content/uploads/2022/03/13005437/featured-compressed-18.jpg?raw=true' style='animation-name:fadein;animation-fill-mode:forwards;animation-duration:4s;object-fit:cover;height:80px;width:100%;border-radius:40px 40px 0px 0px;object-position:0px -180px;'>
+	<center><h1>Credentials</h1></center>
+	<div style='width:100%;display:flex;justify-content:space-evenly;'>
+		<div class='inputbox'>
+			<input required id='President'>
+			<label>President</label>
+		</div>
+		<div class='inputbox'>
+			<input required id='Vice President'>
+			<label>Vice President</label>
+		</div>
+		<div class='inputbox'>
+			<input required id='Secretary'>
+			<label>Secretary</label>
+		</div>
+	</div>
+	<br>
+	<div style='width:100%;display:flex;justify-content:space-evenly;'>
+		<div class='inputbox'>
+			<input required id='Treasurer'>
+			<label>Treasurer</label>
+		</div>
+		<div class='inputbox'>
+			<input required id='Maintanence'>
+			<label>Maintanence</label>
+		</div>
+		<div class='inputbox'>
+			<input required id='Security'>
+			<label>Security</label>
+		</div>
+	</div>
+
+	<!---<center><label>President: <input class='entry' type='text' id='President'></label></center>
+	<br>
+	<center><label>Vice President: <input class='entry' type='text' id='Vice President'></label></center>
+	<br>
+	<center><label>Secretary: <input class='entry' type='text' id='Secretary'></label></center>
+	<br>
+	<center><label>Treasurer: <input class='entry' type='text' id='Treasurer'></label></center>
+	<br>
+	<center><label>Maintanence: <input class='entry' type='text' id='Maintanence'></label></center>
+	<br>
+	<center><label>Security: <input class='entry' type='text' id='Security'></label></center>--->
+	<center><h3 style='font-family:Josefin-lightitalic;'>Community's Unique ID: <span id='uid' style='font-family:Josefin;'></span></h3></center>
+	<center><h3>Password for all the usernames is your Community's Unique ID</h3></center>
+	<center><h6>Note: Your Community's Unique ID cannot be retrieved if lost. So<br>please save it safely for future reference.</h6></center>
+	<center><button id='addcom'><span class="fa fa-solid fa-person"></span>  Register Community</button></center>
+
+	</div></center>
+	`};
+	
+	document.getElementById('community').onchange=async function(e){
+		if (e.currentTarget.checked==true){
+			document.getElementById('step2').style='';
+			document.body.innerHTML=community['step2'];
+			
+			var details=[];
+			document.getElementById('continue').onclick=async function(){
+				document.getElementById('flat').value='Ankur Bob Classic'
+				document.getElementById('assc').value='Ankur Bob Classic Welfare Association'
+				document.getElementById('addr').value='Ankur Bob Classic, Rathinammal Street, Kodambakkam, Chennai - 600024'
+				document.getElementById('blocks').value='8'
+				document.getElementById('floor').value='4'
+				document.getElementById('total').value='128'
+				var entries=['flat','assc','addr','blocks','floor','total'];
+				var count=0;
+				for (let u of entries){
+
+					if (document.getElementById(u).value.trim().length==0){
+						alert('All fields are mandatory');
+						break;
+					}
+					else{
+						count+=1;
+
+					}
+				}
+				if (count==entries.length){
+
+					for (let y of entries){
+						details.push(document.getElementById(y).value.trim());
+					}
+					document.body.innerHTML=community['step3'];
+					
+					var comuid=Math.trunc(Math.random(1,10)*1000000);
+					var exists=true;
+					var comids=[];
+					await db.collection('community').get().then(t => {
+						t.docs.map(async function(g){
+							comids.push(await g.data().uid)
+
+						})
+					})
+					while (exists==true){
+						if (comids.includes(comuid.toString())==true){
+							comuid=Math.trunc(Math.random(1,10)*1000000);
+
+						}
+						else{
+							exists=false;
+						}
+					}
+					var posting={};
+					document.getElementById('addtb').onclick=function(){
+						if (document.getElementById('postsel').value=='default' || document.getElementById('bearername').value.trim().length==0){
+							alert('Enter Designation and Name of Office Bearer');
+						}
+						else{
+							document.getElementById('td'+document.getElementById('postsel').value).innerHTML=`<center>`+document.getElementById('bearername').value.trim()+`</center>`;
+							posting[document.getElementById(document.getElementById('postsel').value).innerHTML]=document.getElementById('bearername').value.trim();
+							document.getElementById('postsel').value='default';
+							document.getElementById('bearername').value='';
+
+						}
+					}
+					for (let p of document.getElementById('postsel').childNodes){
+						if (p.value!=undefined && p.value!='default'){
+							document.getElementById('postsel').value=p.value
+							document.getElementById('bearername').value='Vishwaa'
+							document.getElementById('addtb').click()
+							setTimeout(()=>{},1500)
+						}
+
+					}//Checking com
+					document.getElementById('confirm_list').onclick=async function(){
+						if (Object.keys(posting).length!=6){
+							alert('All Office Bearers have to be declared');
+
+						}
+						else{
+							document.body.innerHTML=community['step4'];
+							var usernames={};
+							for (let m in posting){
+								document.getElementById(m).value=posting[m].toLowerCase().split(" ").join('')+'.'+m.toLowerCase().split(" ").join('')+'.'+comuid.toString()+'@neigbhonet.com';
+								usernames[m]=posting[m].toLowerCase().split(" ").join('')+'.'+m.toLowerCase().split(" ").join('')+'.'+comuid.toString()+'@neigbhonet.com';
+								document.getElementById(m).disabled=true;
+							}
+							document.getElementById('uid').innerHTML=comuid;
+							document.getElementById('addcom').onclick=async function(){
+								await db.collection('community').doc(details[0]+' '+comuid.toString()).set({
+									addr:details[2],
+									floor_block:details[4],
+									name:details[1],
+									no_of_blocks:details[3],
+									total_flats:details[5],
+									uid:comuid.toString()
+								});
+								for (let y in posting){
+									await db.collection('admins').doc(usernames[y]).set({
+										name:posting[y],
+										username:usernames[y],
+										passwd:comuid.toString(),
+										designation:y
+									})
+								}
+								document.getElementById('addcom').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
+								for (let u in usernames){
+									await auth.createUserWithEmailAndPassword(usernames[u],comuid.toString());
+								}
+								alert('Community registered Successfully.\nNote down the usernames for future usage');
+								document.getElementById('addcom').innerHTML=`<span class="fa fa-solid fa-person"></span>  Register Community`
+							}
+
+
+
+
+						}
+					} 
+				}
+			}
+
+		}
+
+	}
+	document.getElementById('inmate').onchange=(e) => {
+		if(event.currentTarget.checked==true){
+
+			
+
+			document.getElementById('step2').style='';
+			document.getElementById('step2').innerHTML=residents['step2'];
+			document.getElementById('step2').scrollIntoView({behavior:'smooth',block: 'nearest', inline: 'center'});
+			// document.documentElement.scrollTop=0
+			document.getElementById('comcode').addEventListener('keyup',(e)=>{
+				if (e.keyCode==13){
+					document.getElementById('connectbtn').click()
+				}
+			})
+			document.getElementById('connectbtn').onclick=async function(){
+				try{
+					document.getElementById('loading_img').remove()
+					document.getElementById('con_suc').remove()
+					document.getElementById('proceed').remove()
+
+				}
+				catch(err){
+
+				}
+				var comids={};
+				auth.signInWithEmailAndPassword('admin@neighbonet.com','Abc!123');
+				if (document.getElementById('comcode').value.trim().length==0){
+						alert('Enter Community Code');
+				}
+				else{
+					if (document.getElementById('comcode').value.trim().length!=6){
+						alert('Invalid Community Code');
+					}
+					else{
+						var comid=document.getElementById('comcode').value.trim()
+						// document.getElementById('connectbtn').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
+						var loading=document.createElement('img')
+						loading.id='loading_img'
+						loading.src='Images/loading-animation.gif'
+						loading.style='width:30%;margin:auto;'
+						document.getElementById('inmatereg').appendChild(loading)
+						await db.collection('community').get().then(async function(g){
+							g.docs.map(t => {
+								comids[t.data().uid]=t.data()
+							})
+
+						})
+
+						if (document.getElementById('comcode').value.trim() in comids==false){
+							alert('Community Code not found');
+							document.getElementById('connectbtn').innerHTML=`<span class="fa fa-solid fa-link"></span> Connect`
+
+						}
+						else{
+							var indicate=document.createElement('h4')
+							indicate.id='con_suc'
+							indicate.style='font-weight:bold;width:80%;'
+							indicate.innerHTML=`You are successfully connected to <br><span style='font-weight:bold;font-size:20px;'>`+comids[document.getElementById('comcode').value.trim()].name+`,<br>`+comids[document.getElementById('comcode').value.trim()].addr+`</span>`
+							document.getElementById('inmatereg').appendChild(indicate)
+							document.getElementById('loading_img').src='Images/tick.gif'
+							var proceed=document.createElement('button')
+							proceed.id='proceed'
+							proceed.setAttribute('class','proceed')
+							proceed.innerHTML=`<span class='fa fa-solid fa-right-long'></span>  Proceed`
+							document.getElementById('inmatereg').appendChild(proceed)
+							proceed.onclick=function(){
+								document.body.innerHTML=residents['step3']
+								document.getElementById('selfreg').onclick=async function(){
+									var entries=['name','addr','phno','block','floor','doorno'];
+
+									var c=0;
+									for (let i of entries){
+										if (document.getElementById(i).value.trim().length==0){
+											alert('All fields are mandatory');
+											break;
+										}
+										else{
+											c+=1;
+
+										}
+									}
+									if (c==entries.length){
+										var persdet={};
+										for (let ids of entries){
+											persdet[ids]=document.getElementById(ids).value.trim()
+										}
+
+										var username=document.getElementById('name').value.trim().toLowerCase()+document.getElementById('block').value.trim().toLowerCase()+'_'+document.getElementById('doorno').value.trim().toLowerCase()+'.'+comid.toLowerCase()+'@neigbhonet.com';
+										document.body.innerHTML=residents['step4'];
+										
+										document.getElementById('username').value=username;
+										document.getElementById('username').disabled=true
+										var passwd=false;
+										document.getElementById('see').onclick=function(){
+											if (passwd==false){
+												document.getElementById('passwd').type='text';
+												document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye-slash"></span>`
+												passwd=true;
+
+											}
+											else{
+												document.getElementById('passwd').type='password';
+												document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye"></span>`
+												passwd=false;
+											}
+
+										}
+										document.getElementById('consee').onclick=function(){
+											if (passwd==false){
+												document.getElementById('conpasswd').type='text';
+												document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye-slash"></span>`
+												passwd=true;
+
+											}
+											else{
+												document.getElementById('conpasswd').type='password';
+												document.getElementById('see').innerHTML=`<span class="fa fa-solid fa-eye"></span>`
+												passwd=false;
+											}
+
+										}
+										document.getElementById('finalreg').onclick=async function(){
+											var passwd;
+											var conpasswd;
+											passwd=document.getElementById('passwd').value.trim();
+											conpasswd=document.getElementById('conpasswd').value.trim();
+											if (passwd!=conpasswd){
+												alert('Password do not match');
+											}
+											else{
+												document.getElementById('finalreg').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
+												await db.collection('residents').doc(username).set({
+													add:persdet['addr'],
+													block:persdet['block'],
+													d_no:persdet['doorno'],
+													floor:persdet['floor'],
+													name:persdet['name'],
+													phno:persdet['phno']
+												});
+												await auth.createUserWithEmailAndPassword(username,document.getElementById('passwd').value.trim());
+												alert('Successfully resgitered.\nLogin with your new Credentials.\nThank you for for registering');
+												window.open('index.html','_self');
+												document.getElementById('finalreg').innerHTML= `<span class="fa fa-solid fa-registered"></span>  Register`
+											}
+										}
+									}
+
+
+								}
+
+							}
+							
+						}
+
+
+						
+
+					}
+				}
+				
+				
+			}
+		}
+
+	}
+
+</script>
+<script type='text/javascript'>
+
+	
+	/**/
+
+</script>
+</html>

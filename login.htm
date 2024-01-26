@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login | Neighbonet</title>
+	<script src="https://kit.fontawesome.com/a1910bac18.js" crossorigin="anonymous"></script>
+	<link rel='icon' type='image/x-icon' href='https://github.com/VISHWAAR/storage/blob/main/icon.png?raw=true'>
+	<link rel='stylesheet' href='style2.css'>
+
+</head>
+<body>
+	<div style='z-index:11000;position:fixed;margin:auto;box-shadow:2px 2px 20px 2px black;width:100vw;height:12vh;border-radius:8px;background: white;'>
+        <table style='width:100%;height:100%;border-collapse:collapse;'>
+            <tr>
+                <td style='width:20%;'>
+                    <center><h1><b>NeighboNet</b></h1></center>
+                </td>
+                <td style='width:8%;'></td>
+                <td style='width:40%;'></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
+                <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
+                
+                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br><br><br><br><br><br>
+	
+	<br><br>
+	<center>
+		<div style='border:1px solid purple;border-radius:15px;width:30%;height:40%;background:white;box-shadow:2px 2px 4px 0px purple,inset 0px 10px 0px purple;'>
+			<br>
+			<center><h1 style='color:black;'>Login</h1></center>
+			<div class='inputbox'>
+				<input id='user' required>
+				<label>Username</label>
+			</div>
+			<br>
+			<div class='inputbox'>
+				<input id='user' required>
+				<label>Password</label>
+			</div>
+			<br><br>
+			<button class='loginbtn' id='login'><span class='fa fa-solid fa-right-long'></span> Login</button>
+			<br><br><br><br>
+			<!-- <input type='text' id='user' placeholder='Enter username' class='entry'>
+			<br><br>
+			<input type='password' id='passwd' placeholder='Enter Password' class='entry'>
+			<br><br><br>
+			
+			<br><br><br> -->
+
+
+		</div>
+
+
+
+	</center>
+	
+
+</body>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
+<script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
+
+<script type='module'>
+	// Import the functions you need from the SDKs you need
+	 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig = {
+	  apiKey: "AIzaSyBuUPN1d9YvLOXgMv9A0DItNo_IKo2SYew",
+	  authDomain: "hackathon-handlers.firebaseapp.com",
+	  projectId: "hackathon-handlers",
+	  storageBucket: "hackathon-handlers.appspot.com",
+	  messagingSenderId: "1030547854386",
+	  appId: "1:1030547854386:web:bd3f2713fb275aef60d82b",
+	  measurementId: "G-5Y71Q1NXQC"
+	};
+
+	// Initialize Firebase
+	const app = firebase.initializeApp(firebaseConfig);
+	const auth=firebase.auth();
+	const db=firebase.firestore();
+	const storage=firebase.storage();
+
+	document.getElementById('login').onclick=async function(){
+		var user=document.getElementById('user').value.trim();
+		var passwd=document.getElementById('passwd').value.trim();
+		if (user.length==0 || passwd.length==0){
+			alert('All fields are mandatory');
+		}
+		else{
+			if (user.includes('@neigbhonet.com')==false){
+				alert('Invalid username')
+			}
+			else{
+				var error=[];
+				auth.signInWithEmailAndPassword(user,passwd).catch((err) => {
+					alert(err.message,err);
+					error.push(true);
+				})
+				if (error.length==0){
+					console.log(user.split('.'))
+					if (user.split('.').length==3){
+						window.sessionStorage.setItem('user',JSON.stringify([user,passwd,'user']));
+						window.open('Dashboard.html','_self')
+					}
+					else if (user.split('.').length==4){
+						window.sessionStorage.setItem('user',JSON.stringify([user,passwd,'admin']));
+						window.open('Dashboard.html','_self')
+					}
+
+
+
+
+				}
+
+			}
+		}
+
+
+	}
+
+
+</script>
+</html>
