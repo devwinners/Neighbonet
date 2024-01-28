@@ -1,6 +1,6 @@
-// import {AgoraRTC} from '/assets/AgoraRTC_N-4.20.0.js'
+import {auth,db} from '/config.js'
 
-(function init(){
+(async function init(){
 	
 	let minimised=false;
 	document.getElementById('minimise').onclick=function(){
@@ -42,5 +42,31 @@
 			
 
 	}
+	
+	document.getElementById('admins_view').onclick=async function(){
+		await db.collection('admins').get().then(async (r)=> {
+			await r.docs.map(async(g) => {
+				let extract_UID=await auth.currentUser.email.split('@')[0].split('.')[1]
+				console.log(extract_UID)
+				if (g.id.split('.')[2].includes(extract_UID)){
+					var office_bearer_tbl=document.createElement('table')
+					office_bearer_tbl.style='width:100%;height:100%;border-collapse:collapse;'
+					office_bearer_tbl.innerHTML=`
+						<tr>
+							<td style='width:5%;'></td>
+							<td style='width:30%;'></td>
+							<td style='width:30%;'></td>
+							<td style='width:30%;'></td>
+							<td style='width:5%;'></td>
+						</tr>
+
+						
+					`
+					document.getElementById('widg_cont').appendChild(office_bearer_tbl)
+				}
+			})
+		})
+	}
+
 
 })();

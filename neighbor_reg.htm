@@ -16,10 +16,6 @@
 		padding:0;
 		overflow-x:hidden;
 	}
-	@font-face{
-        font-family: Josefin;
-        src:url('assets/JosefinSansBold.ttf');
-    }
     h1,h2,h3,h4,h5,h6,label{
         font-family:Josefin;
     }
@@ -462,34 +458,48 @@
 				<td style='width:50%;'>
 					<center><table style='width:80%;border-collapse:collapse;' id='bearers'>
 						<tr>
-							<th style='width:50%;background:#2884D8;color:white;'>Designation</th>
-							<th style='width:50%;background:#2884D8;color:white;'>Office Bearer</th>
+							<th style='width:25%;background:#2884D8;color:white;'>Designation</th>
+							<th style='width:25%;background:#2884D8;color:white;'>Office Bearer</th>
+							<th style='width:25%;background:#2884D8;color:white;'>Phone Number</th>
+							<th style='width:25%;background:#2884D8;color:white;'>Mail ID</th>
 
 
 						</tr>
 						<tr>
-							<td style='width:50%;border:1px solid black;height:50px;'><center>President</center></td>
-							<td style='width:50%;border:1px solid black;height:50px;' id='tdpres'></td>
+							<td style='width:25%;border:1px solid black;height:50px;'><center>President</center></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdpres'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdpresphno'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdpresmailid'></td>
 						</tr>
 						<tr>
-							<td style='width:50%;border:1px solid black;height:50px;'><center>Vice President</center></td>
-							<td style='width:50%;border:1px solid black;height:50px;' id='tdvp'></td>
+							<td style='width:25%;border:1px solid black;height:50px;'><center>Vice President</center></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdvp'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdvpphno'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdvpmailid'></td>
 						</tr>
 						<tr>
-							<td style='width:50%;border:1px solid black;height:50px;'><center>Secretary</center></td>
-							<td style='width:50%;border:1px solid black;height:50px;' id='tdsecr'></td>
+							<td style='width:25%;border:1px solid black;height:50px;'><center>Secretary</center></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecr'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecrphno'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecrmailid'></td>
 						</tr>
 						<tr>
-							<td style='width:50%;border:1px solid black;height:50px;'><center>Treasurer</center></td>
-							<td style='width:50%;border:1px solid black;height:50px;' id='tdtreas'></td>
+							<td style='width:25%;border:1px solid black;height:50px;'><center>Treasurer</center></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdtreas'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdtreasphno'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdtreasmailid'></td>
 						</tr>
 						<tr>
-							<td style='width:50%;border:1px solid black;height:50px;'><center>Maintanence</center></td>
-							<td style='width:50%;border:1px solid black;height:50px;' id='tdmaint'></td>
+							<td style='width:25%;border:1px solid black;height:50px;'><center>Maintanence</center></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdmaint'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdmaintphno'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdmaintmailid'></td>
 						</tr>
 						<tr>
-							<td style='width:50%;border:1px solid black;height:50px;'><center>Security</center></td>
-							<td style='width:50%;border:1px solid black;height:50px;' id='tdsecu'></td>
+							<td style='width:25%;border:1px solid black;height:50px;'><center>Security</center></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecu'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecuphno'></td>
+							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecumailid'></td>
 						</tr>
 
 
@@ -510,6 +520,16 @@
 						<div class='inputbox'>
 							<input required id='bearername'>
 							<label>Office Bearer's name</label>
+						</div>
+						<br><br>
+						<div class='inputbox'>
+							<input required id='bearerphno'>
+							<label>Office Bearer's Phone Number</label>
+						</div>
+						<br><br>
+						<div class='inputbox'>
+							<input required id='bearer_mail'>
+							<label>Office Bearer's Email ID</label>
 						</div>
 						<br><br>
 						<center><button id='addtb'><span class='fa fa-solid fa-plus'></span> Add to List</center>
@@ -643,14 +663,19 @@
 					}
 					var posting={};
 					document.getElementById('addtb').onclick=function(){
-						if (document.getElementById('postsel').value=='default' || document.getElementById('bearername').value.trim().length==0){
-							alert('Enter Designation and Name of Office Bearer');
+						if (document.getElementById('postsel').value=='default' || document.getElementById('bearername').value.trim().length==0 || document.getElementById('bearerphno').value.trim().length==0 || document.getElementById('bearer_mail').value.trim().length==0){
+							alert('Enter details of Office Bearer');
 						}
 						else{
 							document.getElementById('td'+document.getElementById('postsel').value).innerHTML=`<center>`+document.getElementById('bearername').value.trim()+`</center>`;
-							posting[document.getElementById(document.getElementById('postsel').value).innerHTML]=document.getElementById('bearername').value.trim();
+							document.getElementById('td'+document.getElementById('postsel').value+'phno').innerHTML=`<center>`+document.getElementById('bearerphno').value.trim()+`</center>`;
+							document.getElementById('td'+document.getElementById('postsel').value+'mailid').innerHTML=`<center>`+document.getElementById('bearer_mail').value.trim()+`</center>`;
+
+							posting[document.getElementById(document.getElementById('postsel').value).innerHTML]=[document.getElementById('bearername').value.trim(),document.getElementById('bearerphno').value.trim(),document.getElementById('bearer_mail').value.trim()]
 							document.getElementById('postsel').value='default';
 							document.getElementById('bearername').value='';
+							document.getElementById('bearerphno').value='';
+							document.getElementById('bearer_mail').value='';
 
 						}
 					}
@@ -658,6 +683,9 @@
 						if (p.value!=undefined && p.value!='default'){
 							document.getElementById('postsel').value=p.value
 							document.getElementById('bearername').value='Vishwaa'
+							document.getElementById('bearerphno').value='9500013229'
+							document.getElementById('bearer_mail').value='vishdev@gmail.com'
+							setTimeout(()=>{},500)
 							document.getElementById('addtb').click()
 							setTimeout(()=>{},1500)
 						}
@@ -672,8 +700,8 @@
 							document.body.innerHTML=community['step4'];
 							var usernames={};
 							for (let m in posting){
-								document.getElementById(m).value=posting[m].toLowerCase().split(" ").join('')+'.'+m.toLowerCase().split(" ").join('')+'.'+comuid.toString()+'@neigbhonet.com';
-								usernames[m]=posting[m].toLowerCase().split(" ").join('')+'.'+m.toLowerCase().split(" ").join('')+'.'+comuid.toString()+'@neigbhonet.com';
+								document.getElementById(m).value=posting[m][0].toLowerCase().split(" ").join('')+'.'+m.toLowerCase().split(" ").join('')+'.'+comuid.toString()+'@neigbhonet.com';
+								usernames[m]=posting[m][0].toLowerCase().split(" ").join('')+'.'+m.toLowerCase().split(" ").join('')+'.'+comuid.toString()+'@neigbhonet.com';
 								document.getElementById(m).disabled=true;
 							}
 							document.getElementById('uid').innerHTML=comuid;
@@ -688,10 +716,12 @@
 								});
 								for (let y in posting){
 									await db.collection('admins').doc(usernames[y]).set({
-										name:posting[y],
+										name:posting[y][0],
 										username:usernames[y],
 										passwd:comuid.toString(),
-										designation:y
+										designation:y,
+										phno:posting[y][1],
+										mailid:posting[y][2]
 									})
 								}
 								document.getElementById('addcom').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
