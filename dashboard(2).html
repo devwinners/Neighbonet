@@ -3,8 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://kit.fontawesome.com/a1910bac18.js" crossorigin="anonymous"></script>
 	<title>Dashboard | Neighbonet</title>
 	<link rel='stylesheet' href='style2.css'>
+	
 </head>
 <body>
 	<div style='z-index:11000;position:fixed;margin:auto;box-shadow:2px 2px 20px 2px black;width:100vw;height:12vh;border-radius:8px;background: white;'>
@@ -13,17 +15,42 @@
                 <td style='width:20%;'>
                     <center><h1><b>NeighboNet</b></h1></center>
                 </td>
+
                 <td style='width:40%;'></td>
                 <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#about'>About</a></center></td>
                 <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#services'>Services</a></center></td>
                 <td style='width:8%;'><center><a class='anchors' target="_blank" href='index.html#contact'>Contact</a></center></td>
-                <td style='width:8%;'><center><a class='anchors' target="_blank" href='login.htm' target="_blank">Login</a></center></td>
-                <td style='width:8%;'><center><a class='signup' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+                
+                <td style='width:8%;'><center><a class='anchors' href='neighbor_reg.htm' target="_blank">Sign Up</a></center></td>
+                <td style='width:8%;'><center><button style='border-width:0px;' class='anchors'><span class='fa fa-solid fa-user'></span>  </button></center></td>
             </tr>
         </table>
     </div>
-    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br>
+    <div class='toolbar' id='dash_div'>
+    	<br><br>
+    	<center><h1 id='dash_txt' style='color:white;'><span class='fa fa-solid fa-bars-progress'></span>      <span>Dashboard</span></center>
+    	<br><br>
+    	<center><acronym title='Virtual Townhall'><button class='dash_btns'><span class='fa fa-solid fa-building'></span>     <span style=''>Virtual Townhall</span></button></acronym></center>
+    	<br>
+    	<center><acronym title='Visitor Pre - Approval'><button class='dash_btns'><span class='fa fa-solid fa-door-open'></span>     <span style=''>Visitor Pre - Approval</span></button></acronym></center>
+    	<br>
+    	<center><acronym title='Bulletin Board'><button class='dash_btns'><span class='fa fa-solid fa-list'></span>     <span style=''>Bulletin Board</span></button></acronym></center>
+    	<br>
+    	<center><acronym title='Disaster Management'><button class='dash_btns'><span class='fa fa-solid fa-bolt-lightning'></span>     <span style=''>Disaster Management</span></button></acronym></center>
+    	<br>
+    	<center><acronym title='Minimise Dashboard'><button id='minimise' style='border-width:1px 0px 1px 0px;border-color:white;' class='dash_btns'><span id='minimise_caret' style='position:relative;left:40%;top:0%;' class='fa fa-solid fa-caret-left'></span></button></acronym></center>
+
+    </div>
+    <div id='video_cont'></div>
+
 	
 
 </body>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
+<script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
+<script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
+<script src='config.js' type='module'></script>
+<script type='module' src='dashboard.js'></script>
+
 </html>

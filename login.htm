@@ -39,7 +39,7 @@
 			</div>
 			<br>
 			<div class='inputbox'>
-				<input id='user' required>
+				<input id='passwd' required>
 				<label>Password</label>
 			</div>
 			<br><br>
@@ -64,31 +64,9 @@
 <script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js' type='module'></script>
 <script src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js' type='module'></script>
 <script type="module" src='https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js'></script>
-
+<script src='config.js'></script>
 <script type='module'>
-	// Import the functions you need from the SDKs you need
-	 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-	 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-	// TODO: Add SDKs for Firebase products that you want to use
-	// https://firebase.google.com/docs/web/setup#available-libraries
-
-	// Your web app's Firebase configuration
-	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	const firebaseConfig = {
-	  apiKey: "AIzaSyBuUPN1d9YvLOXgMv9A0DItNo_IKo2SYew",
-	  authDomain: "hackathon-handlers.firebaseapp.com",
-	  projectId: "hackathon-handlers",
-	  storageBucket: "hackathon-handlers.appspot.com",
-	  messagingSenderId: "1030547854386",
-	  appId: "1:1030547854386:web:bd3f2713fb275aef60d82b",
-	  measurementId: "G-5Y71Q1NXQC"
-	};
-
-	// Initialize Firebase
-	const app = firebase.initializeApp(firebaseConfig);
-	const auth=firebase.auth();
-	const db=firebase.firestore();
-	const storage=firebase.storage();
+	import {auth,db} from '/config.js'
 
 	document.getElementById('login').onclick=async function(){
 		var user=document.getElementById('user').value.trim();
@@ -102,7 +80,7 @@
 			}
 			else{
 				var error=[];
-				auth.signInWithEmailAndPassword(user,passwd).catch((err) => {
+				await auth.signInWithEmailAndPassword(user,passwd).catch((err) => {
 					alert(err.message,err);
 					error.push(true);
 				})
@@ -110,11 +88,11 @@
 					console.log(user.split('.'))
 					if (user.split('.').length==3){
 						window.sessionStorage.setItem('user',JSON.stringify([user,passwd,'user']));
-						window.open('Dashboard.html','_self')
+						window.open('dashboard(2).html','_self')
 					}
 					else if (user.split('.').length==4){
 						window.sessionStorage.setItem('user',JSON.stringify([user,passwd,'admin']));
-						window.open('Dashboard.html','_self')
+						window.open('dashboard(2).html','_self')
 					}
 
 
