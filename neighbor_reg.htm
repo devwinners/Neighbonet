@@ -328,6 +328,16 @@
 									<label>Enter your Door No.</label>
 								</div>
 							</div>
+							<br><br>
+							<div style='display:flex;justify-content:space-evenly;'>
+								<div class='inputbox'>
+									<input id='mailid' required>
+									<label>Enter Maild ID</label>
+								</div>
+								<div style='width:25vw;'></div>
+								<div style='width:25vw;'></div>
+								
+							</div>
 							<br><br><br>
 							<center><button class='condet' id='selfreg'><span class="fa fa-solid fa-tick"></span> Confirm Details</button></center>
 							<br><br>
@@ -768,7 +778,7 @@
 
 				}
 				var comids={};
-				auth.signInWithEmailAndPassword('admin@neighbonet.com','Abc!123');
+				await auth.signInWithEmailAndPassword('admin@neighbonet.com','Abc!123');
 				if (document.getElementById('comcode').value.trim().length==0){
 						alert('Enter Community Code');
 				}
@@ -811,7 +821,7 @@
 							proceed.onclick=function(){
 								document.body.innerHTML=residents['step3']
 								document.getElementById('selfreg').onclick=async function(){
-									var entries=['name','addr','phno','block','floor','doorno'];
+									var entries=['name','addr','phno','block','floor','doorno','mailid'];
 
 									var c=0;
 									for (let i of entries){
@@ -880,8 +890,10 @@
 													d_no:persdet['doorno'],
 													floor:persdet['floor'],
 													name:persdet['name'],
-													phno:persdet['phno']
+													phno:persdet['phno'],
+													mailid:persdet['mailid']
 												});
+												await auth.signOut();
 												await auth.createUserWithEmailAndPassword(username,document.getElementById('passwd').value.trim());
 												alert('Successfully resgitered.\nLogin with your new Credentials.\nThank you for for registering');
 												window.open('index.html','_self');

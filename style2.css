@@ -224,8 +224,9 @@ button:hover{
 	position:fixed;
 	height:100vh;
 	width:20vw;
+	top:12.8%;
 	max-height:90vh;
-	overflow-y:auto;
+	overflow-y:hidden;
 	background:white;
 	border-radius:0 10px 10px 0px;
 	box-shadow:4px 0px 15px 2px black;
@@ -277,4 +278,7 @@ button:hover{
 }
 td{
 	border:1px solid black;
+}
+.copy:hover{
+	cursor:pointer;
 }
