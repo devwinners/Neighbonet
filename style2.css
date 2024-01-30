@@ -276,9 +276,23 @@ button:hover{
 	background: #B87333;
 	border-radius:8px;
 }
-td{
+/*td{
 	border:1px solid black;
-}
+}*/
 .copy:hover{
 	cursor:pointer;
+}
+#updets{
+	height:8vh;
+	border-radius:8px;
+	border-width:0.2px;
+	font-family: Josefin;
+	transition:0.5s;
+
+}
+#updets:hover{
+	cursor:pointer;
+	background:navy;
+	color:white;
+	letter-spacing:1.2px;
 }

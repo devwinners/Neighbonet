@@ -109,6 +109,20 @@
             border:1px solid black;
         }*/
     </style>
+    <style>
+        /* Add styles for the initially hidden elements */
+        .hidden {
+          opacity: 0;
+          transform: translateY(20px); /* Adjust the initial translateY value as needed */
+          transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+      
+        /* Add styles for the revealed elements */
+        .visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      </style>
 </head>
 <body>
     <div style='z-index:11000;position:fixed;box-shadow:2px 2px 20px 2px black;width:99vw;height:12vh;border-radius:8px;background: white;'>
@@ -127,8 +141,8 @@
         </table>
     </div>
     <br><br><br>
-    <center><div style='background-image: url("Images/About BG.png");background-repeat: no-repeat;width:99vw;height:70vh;background-size: cover;background-position: 10% 15%;'>
-        <center><h1 style='color:white;top:15%;left:26%;position:absolute;'>NeighboNet - Innovation Meets Community</h1></center>
+    <center><div class = "hidden" style='background-image: url("Images/About BG.png");background-repeat: no-repeat;width:99vw;height:70vh;background-size: cover;background-position: 10% 15%;'>
+        <center><h1 class = "hidden" style='color:white;top:15%;left:26%;position:absolute;'>NeighboNet - Innovation Meets Community</h1></center>
         <!-- <img src="Images/About BG (2).png" id="aboutbg" style="margin-top: 30px;width: 1200px;height: 500px;animation-name:fadein;animation-duration:4s;animation-fill-mode:forawrds;border-radius:15px;"> -->
     </div></center>
 
@@ -160,10 +174,10 @@
             </td>
             <td style='width:2%;'></td>
             <td style='width:48%;'>
-                <center><h1><u>About Us</u></h1></center>
+                <center><h1 class = "hidden"><u>About Us</u></h1></center>
                 <br><br>
-                <center>
-                    <h2 style='line-height:30px;font-size:22px;font-family:Josefin-bold-italic;'>NeighboNet isn't just an app; we're a transformative force, reshaping communities for a brighter future.</h2>
+                <center class = "hidden">
+                    <h2  style='line-height:30px;font-size:22px;font-family:Josefin-italic;'>NeighboNet isn't just an app; we're a transformative force, reshaping communities for a brighter future.</h2>
                     <br>
                     <h2 style='line-height:30px;font-size:22px;font-family:Josefin-bold-italic;'>We empower residents and prioritize security, efficiency, and safety.</h2>
                     <br>
@@ -177,7 +191,7 @@
     </table></center>
     <center><div id='services' style='width:90vw;border-radius:8px;box-shadow:2px 2px 20px 4px navy;'>
         <br>
-        <center><h1><u>SERVICES</u></h1></center>
+        <center class = "hidden"><h1><u>SERVICES</u></h1></center>
         <!-- <center><table style='width:100%;border-collapse:collapse;'>
             <tr>
                 <td style='width:10%;'></td>
@@ -193,13 +207,13 @@
             </tr>
         </table></center> -->
         <br>
-        <center><table style='width:100%;border-collapse:collapse;'>
+        <center ><table style='width:100%;border-collapse:collapse;'>
             <tr>
                 <td style='width:10%;'></td>
                 <td style='width:30%;'>
                     <center><img style='width:100%;border-radius:10px;' src='Images/board.png'></center>
                 </td>
-                <td style='width:50%;'>
+                <td style='width:50%;' class = "hidden">
                     <center><h1><u>Centralized Bulletin Board :</u></h1></center>
                     <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>A centralized, user-friendly bulletin board is pivotal for streamlined communication among residents, offering a dynamic platform for accessing diverse community updates. It consolidates announcements, events, and essential resources, fostering inclusivity and active engagement. The system's intuitive interface caters to varying technological proficiencies, ensuring accessibility. Beyond information dissemination, it cultivates community cohesion by facilitating collaboration and discussions. Real-time notifications and personalized settings enhance the user experience, tailoring updates to individual preferences. In summary, this bulletin board serves as a comprehensive hub, empowering residents to stay well-informed, actively participate, and contribute to the vibrancy of their shared living space.</h3></center>
 
@@ -211,7 +225,7 @@
                 <td style='width:30%;'>
                     <center><img style='width:100%;border-radius:10px;' src='Images/virtual-townhall.png'></center>
                 </td>
-                <td style='width:50%;'>
+                <td style='width:50%;' class = "hidden">
                     <center><h1><u>Virtual TownHall :</u></h1></center>
                     <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>The implementation of a virtual town hall serves as a vital forum for community engagement, fostering discussions and polls related to significant committee meetings. This innovative platform actively encourages residents to voice their opinions, amplifying interaction within the community. By providing a space for open dialogue and inclusive decision-making, the virtual town hall becomes a cornerstone for transparent communication. Residents gain a participatory role in shaping important outcomes, enhancing their sense of belonging and empowerment. The seamless integration of discussions and polls not only enriches the decision-making process but also strengthens the communal fabric by acknowledging and valuing diverse perspectives.</h3></center>
                 </td>
@@ -222,7 +236,7 @@
                 <td style='width:30%;'>
                     <center><img style='width:100%;border-radius:10px;' src='Images/security.jpg'></center>
                 </td>
-                <td style='width:50%;'>
+                <td style='width:50%;' class = "hidden">
                     <center><h1><u>Enhanced Security & Visitor Pre-Approval :</u></h1></center>
                     <center><h3 style='font-family: Josefin-thinitalic;line-height: 35px;'>The implementation of a virtual town hall serves as a vital forum for community engagement, fostering discussions and polls related to significant committee meetings. This innovative platform actively encourages residents to voice their opinions, amplifying interaction within the community. By providing a space for open dialogue and inclusive decision-making, the virtual town hall becomes a cornerstone for transparent communication. Residents gain a participatory role in shaping important outcomes, enhancing their sense of belonging and empowerment. The seamless integration of discussions and polls not only enriches the decision-making process but also strengthens the communal fabric by acknowledging and valuing diverse perspectives.</h3></center>
                 </td>
@@ -317,18 +331,49 @@
     <br><br>
     <center><div style='width:80vw;height:60vh;border-radius:10px;background-image:url("Images/Reg_Bg.jpeg");background-repeat:no-repeat;background-size: cover;'>
         <br><br><br><br><br><br><br><br><br>
-        <a class='registernow' href="neighbor_reg.htm">Register Now</a>
+        <a class='registernow' class = "hidden" href="neighbor_reg.htm">Register Now</a>
 
     </div></center>
     <br><br>
-    <center><div id='contact'>
+    <center class = "hidden"><div id='contact'>
         <center><h4>Mail: <a href='mailto:hhupgrad@gmail.com'>hhupgrad@gmail.com</a></h4></center>
         <center><h4>Contact No.: +91 12345 67890</h4></center>
     </div></center>
 
+    <script>
+        // Function to check if an element is in the viewport
+        function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+        }
+      
+        function handleIntersection(entries, observer) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible'); // Add "visible" class when in viewport
+              observer.unobserve(entry.target); // Stop observing once revealed
+            }
+          });
+        }
+
+        const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+      
+        const hiddenElements = document.querySelectorAll('.hidden');
+
+        hiddenElements.forEach(element => {
+          observer.observe(element);
+        });
+      </script>
     
 </body>
 <script>
+
+    
     
     function reg(){
         window.open('neighbor_reg.htm');

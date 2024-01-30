@@ -91,9 +91,10 @@ import {auth,db,storage} from '/config.js'
 	}
 	scroll_on_hover(document.getElementById('dash_div'))
 	document.getElementById('visit_approve').onclick=function(){
+		let pre_approve_dets={photo:'',name:'',desc:'',dov:'',dot:''}
 		document.getElementById('widg_cont').appendChild(document.createElement('br'))
 		var view_approve_div=document.createElement('div')
-		view_approve_div.style='margin:auto;width:70vw;height:80vh;border-radius:8px;border:2px solid black;background:whitesmoke;'
+		view_approve_div.style='margin:auto;width:70vw;border-radius:8px;border:2px solid black;background:whitesmoke;'
 		view_approve_div.innerHTML=`
 			<center><h2>Visitor Pre - Approval</h2></center>
 			<br>
@@ -104,34 +105,71 @@ import {auth,db,storage} from '/config.js'
 						<label>Name of Visitor</label>
 					</div>
 					<br>
-					<textarea style='margin-left:50px;width:30vw;height:25vh;resize:none;' placeholder='Description of Visitor (Optional)'></textarea>
+					<textarea id='desc' style='margin-left:50px;width:30vw;height:25vh;resize:none;' placeholder='Description of Visitor (Optional)'></textarea>
 					<br><br>
 					<div class='inputbox' style='width:30vw;margin-left:50px;'>
-						<input required id='name'>
+						<input onfocus='(this.type="date")' onfocusout='(this.type="text")' required id='dov'>
 						<label>Date of Visit</label>
 					</div>
 					<br><br>
 					<div class='inputbox' style='width:30vw;margin-left:50px;'>
-						<input required id='name'>
-						<label>Expected Time of Visit</label>
+						<input onfocus='(this.type="time")' onfocusout='(this.type="text")' required id='tov'>
+						<label>Expected Time of Visit (24-hr format)</label>
 					</div>
 				</div>
 				<div>
-					<center><button id='visitor_photo' style='border-radius:8px;border:2px dashed black;height:20vh;width:10vw;font-family:Josefin;'>Attach Photograph <br>of Visitor (Optional)</button></center>
+					<center><div id='photo_prev' style='width:10vw;height:20vh;border:2px dashed black;background:whitesmoke;border-radius:8px;'>
+						<span style='font-family:Josefin;position:relative;top:40%;border-radius:8px;'>Attach Photograph <br>of Visitor (Optional)</span>
+					</div></center>
+					<br><br>
+					<center><button id='visitor_photo' style='font-family:Josefin;border-radius:8px;border-width:0.2px;height:5vh;'>Upload Picture</button></center>
 				</div>
 			</div>
+			<br><br>
+			<center><button id='updets'>Upload Details</button></center>
+			<br><br>
+
 
 			
 		`;
 		document.getElementById('widg_cont').appendChild(view_approve_div)
+		document.getElementById('updets').onclick=async function(){
+			let mandate=["name",'dov','tov']
+			let optional=["photo_prev","desc"]
+			let manc=0,optc=0
+			for (let mans of mandate){
+				if (document.getElementById(mans).value.trim().length==0){
+					alert('All fields are mandatory')
+					document.getElementById(mans).style.border='1px solid red'
+				}
+				else{
+					document.getElementById(mans).style.border='1px solid black'
+					manc++;
+				}
+			}
+			for (let opts of optional){
+				if (document.getElementById(opts).value.trim().length==0){
+					alert('All fields are mandatory')
+					document.getElementById(opts).style.border='1px solid red'
+				}
+				else{
+					document.getElementById(opts).style.border='1px solid black'
+					optc++;
+				}
+			}
+			if (manc+optc===mandate.length+optional.length){
+				
+
+			}
+		}
 		document.getElementById('visitor_photo').onclick=async function(){
 			
 			let file_fetcher=document.createElement('input')
 			file_fetcher.type='file'
 			
 			file_fetcher.onchange=async function(e){
-				console.log(e.target.files[0])
-				await storage.ref().child('hi').put(e.target.files[0])
+				pre_approve_dets.photo=true
+				document.getElementById('photo_prev').innerHTML=`<img src='Images/`+e.target.files[0].name+`' style='width:100%;height:100%;'>`
 
 				
 			}
