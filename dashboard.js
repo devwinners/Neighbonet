@@ -50,7 +50,7 @@ import {auth,db,storage} from '/config.js'
 			
 
 	}
-	//await auth.signInWithEmailAndPassword('vishwaa3_c-603.333626@neigbhonet.com','Webdev@27')
+	
 	document.getElementById('admins_view').onclick=async function(){
 		let office_bearer_tbl=document.createElement('table')
 		office_bearer_tbl.style='width:95%;height:100%;border-collapse:collapse;margin:auto;'
@@ -90,10 +90,11 @@ import {auth,db,storage} from '/config.js'
 		}
 	}
 	scroll_on_hover(document.getElementById('dash_div'))
-	document.getElementById('visit_approve').onclick=function(){
-		let pre_approve_dets={photo:'',name:'',desc:'',dov:'',dot:''}
+	document.getElementById('visit_approve').onclick=async function(){
+		await auth.signInWithEmailAndPassword('vishwaa19_19-2c.333626@neigbhonet.com','Webdev@27')
+		let pre_approve_dets={photo_prev:'',name:'',desc:'',dov:'',tov:''}
 		document.getElementById('widg_cont').appendChild(document.createElement('br'))
-		var view_approve_div=document.createElement('div')
+		let view_approve_div=document.createElement('div')
 		view_approve_div.style='margin:auto;width:70vw;border-radius:8px;border:2px solid black;background:whitesmoke;'
 		view_approve_div.innerHTML=`
 			<center><h2>Visitor Pre - Approval</h2></center>
@@ -105,7 +106,7 @@ import {auth,db,storage} from '/config.js'
 						<label>Name of Visitor</label>
 					</div>
 					<br>
-					<textarea id='desc' style='margin-left:50px;width:30vw;height:25vh;resize:none;' placeholder='Description of Visitor (Optional)'></textarea>
+					<textarea id='desc' style='margin-left:50px;width:30vw;height:25vh;resize:none;border-radius:5px;' placeholder='Description of Visitor (Optional)'></textarea>
 					<br><br>
 					<div class='inputbox' style='width:30vw;margin-left:50px;'>
 						<input onfocus='(this.type="date")' onfocusout='(this.type="text")' required id='dov'>
@@ -135,32 +136,69 @@ import {auth,db,storage} from '/config.js'
 		document.getElementById('widg_cont').appendChild(view_approve_div)
 		document.getElementById('updets').onclick=async function(){
 			let mandate=["name",'dov','tov']
-			let optional=["photo_prev","desc"]
-			let manc=0,optc=0
+			let manc=0;
 			for (let mans of mandate){
 				if (document.getElementById(mans).value.trim().length==0){
 					alert('All fields are mandatory')
 					document.getElementById(mans).style.border='1px solid red'
+					break;
 				}
 				else{
 					document.getElementById(mans).style.border='1px solid black'
+					pre_approve_dets[mans]=document.getElementById(mans).value.trim()
 					manc++;
 				}
 			}
-			for (let opts of optional){
-				if (document.getElementById(opts).value.trim().length==0){
-					alert('All fields are mandatory')
-					document.getElementById(opts).style.border='1px solid red'
+			pre_approve_dets.desc=document.getElementById('desc').value.trim();
+
+			let requester={}
+			await db.collection('residents').doc(await auth.currentUser.email).get().then(async (r)=>{
+				let received_data=await r.data()
+				for (let keys in received_data){
+					if (keys!='add' && keys!='mailid'){
+						requester[keys]=received_data[keys]
+					}
 				}
-				else{
-					document.getElementById(opts).style.border='1px solid black'
-					optc++;
-				}
+			})
+			let docid;
+			await db.collection('vp_approval').add({await:true}).then(async(g)=>{
+				docid=await g.id
+			})
+			let visitor_photo='';
+			if (pre_approve_dets.photo_prev!=''){
+				await storage.ref().child(docid).put(pre_approve_dets.photo_prev).then(async(r)=>{
+					visitor_photo=await r.task.snapshot.ref.getDownloadURL()
+				})
 			}
-			if (manc+optc===mandate.length+optional.length){
-				
+			
+			let vp_approval_data={
+				req_uid:await auth.currentUser.email,
+				req_name:requester.name,
+				req_floor:requester.floor,
+				req_block:requester.block,
+				req_dno:requester.d_no,
+				visitor_name:pre_approve_dets.name,
+				visitor_desc:pre_approve_dets.desc,
+				visitor_photo:visitor_photo,
+				dov:pre_approve_dets.dov,
+				tov:pre_approve_dets.tov
+
 
 			}
+			console.log(vp_approval_data)
+			await db.collection('vp_approval').doc(docid).set(vp_approval_data).then(()=>{
+				console.log('hi')
+			})
+			// await db.collection('vp_approval').doc().set({
+			// 	req_uid:await auth.currentUser.email,
+			// 	req_name:requester.name
+
+			// })
+			// if (manc+optc===mandate.length+optional.length){
+
+				
+
+			// }
 		}
 		document.getElementById('visitor_photo').onclick=async function(){
 			
@@ -169,8 +207,12 @@ import {auth,db,storage} from '/config.js'
 			
 			file_fetcher.onchange=async function(e){
 				pre_approve_dets.photo=true
-				document.getElementById('photo_prev').innerHTML=`<img src='Images/`+e.target.files[0].name+`' style='width:100%;height:100%;'>`
-
+				e.preventDefault()
+				document.getElementById('photo_prev').innerHTML=`<img id='photo_img' src='Images/`+e.target.files[0].name+`' style='width:100%;height:100%;'>`
+				pre_approve_dets.photo_prev=e.target.files[0]
+				// await storage.ref().child('checking').put(e.target.files[0]).then(async(r)=>{
+				// 	console.log(await r.task.snapshot.ref.getDownloadURL())
+				// })
 				
 			}
 			file_fetcher.click()
