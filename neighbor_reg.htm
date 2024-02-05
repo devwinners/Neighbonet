@@ -478,38 +478,38 @@
 						<tr>
 							<td style='width:25%;border:1px solid black;height:50px;'><center>President</center></td>
 							<td style='width:25%;border:1px solid black;height:50px;' id='tdpres'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdpresphno'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdpresmailid'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdpresphno'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdpresmailid'></td>
 						</tr>
 						<tr>
 							<td style='width:25%;border:1px solid black;height:50px;'><center>Vice President</center></td>
 							<td style='width:25%;border:1px solid black;height:50px;' id='tdvp'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdvpphno'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdvpmailid'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdvpphno'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdvpmailid'></td>
 						</tr>
 						<tr>
 							<td style='width:25%;border:1px solid black;height:50px;'><center>Secretary</center></td>
 							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecr'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecrphno'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecrmailid'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecrphno'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecrmailid'></td>
 						</tr>
 						<tr>
 							<td style='width:25%;border:1px solid black;height:50px;'><center>Treasurer</center></td>
 							<td style='width:25%;border:1px solid black;height:50px;' id='tdtreas'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdtreasphno'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdtreasmailid'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdtreasphno'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdtreasmailid'></td>
 						</tr>
 						<tr>
 							<td style='width:25%;border:1px solid black;height:50px;'><center>Maintanence</center></td>
 							<td style='width:25%;border:1px solid black;height:50px;' id='tdmaint'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdmaintphno'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdmaintmailid'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdmaintphno'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdmaintmailid'></td>
 						</tr>
 						<tr>
 							<td style='width:25%;border:1px solid black;height:50px;'><center>Security</center></td>
 							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecu'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecuphno'></td>
-							<td style='width:25%;border:1px solid black:height:50px;' id='tdsecumailid'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecuphno'></td>
+							<td style='width:25%;border:1px solid black;height:50px;' id='tdsecumailid'></td>
 						</tr>
 
 
@@ -627,12 +627,12 @@
 			
 			var details=[];
 			document.getElementById('continue').onclick=async function(){
-				document.getElementById('flat').value='Ankur Bob Classic'
-				document.getElementById('assc').value='Ankur Bob Classic Welfare Association'
-				document.getElementById('addr').value='Ankur Bob Classic, Rathinammal Street, Kodambakkam, Chennai - 600024'
-				document.getElementById('blocks').value='8'
-				document.getElementById('floor').value='4'
-				document.getElementById('total').value='128'
+				// document.getElementById('flat').value='Ankur Bob Classic'
+				// document.getElementById('assc').value='Ankur Bob Classic Welfare Association'
+				// document.getElementById('addr').value='Ankur Bob Classic, Rathinammal Street, Kodambakkam, Chennai - 600024'
+				// document.getElementById('blocks').value='8'
+				// document.getElementById('floor').value='4'
+				// document.getElementById('total').value='128'
 				var entries=['flat','assc','addr','blocks','floor','total'];
 				var count=0;
 				for (let u of entries){
@@ -656,6 +656,7 @@
 					var comuid=Math.trunc(Math.random(1,10)*1000000);
 					var exists=true;
 					var comids=[];
+					await auth.signInWithEmailAndPassword('admin@neighbonet.com','Abc!123');
 					await db.collection('community').get().then(t => {
 						t.docs.map(async function(g){
 							comids.push(await g.data().uid)
@@ -689,7 +690,7 @@
 
 						}
 					}
-					for (let p of document.getElementById('postsel').childNodes){
+					/*for (let p of document.getElementById('postsel').childNodes){
 						if (p.value!=undefined && p.value!='default'){
 							document.getElementById('postsel').value=p.value
 							document.getElementById('bearername').value='Vishwaa'
@@ -700,7 +701,7 @@
 							setTimeout(()=>{},1500)
 						}
 
-					}//Checking com
+					}//Checking com*/
 					document.getElementById('confirm_list').onclick=async function(){
 						if (Object.keys(posting).length!=6){
 							alert('All Office Bearers have to be declared');
@@ -840,7 +841,7 @@
 											persdet[ids]=document.getElementById(ids).value.trim()
 										}
 
-										var username=document.getElementById('name').value.trim().toLowerCase()+document.getElementById('block').value.trim().toLowerCase()+'_'+document.getElementById('doorno').value.trim().toLowerCase()+'.'+comid.toLowerCase()+'@neigbhonet.com';
+										var username=((document.getElementById('name').value.trim().toLowerCase()).split(' ')).join('')+document.getElementById('block').value.trim().toLowerCase()+'_'+document.getElementById('doorno').value.trim().toLowerCase()+'.'+comid.toLowerCase()+'@neigbhonet.com';
 										document.body.innerHTML=residents['step4'];
 										
 										document.getElementById('username').value=username;
@@ -891,7 +892,8 @@
 													floor:persdet['floor'],
 													name:persdet['name'],
 													phno:persdet['phno'],
-													mailid:persdet['mailid']
+													mailid:persdet['mailid'],
+													comuid:comid
 												});
 												await auth.signOut();
 												await auth.createUserWithEmailAndPassword(username,document.getElementById('passwd').value.trim());

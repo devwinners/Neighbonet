@@ -126,6 +126,7 @@ body{
 
 h1,h2,h3,h4,h5,h6{
 	font-family:Josefin;
+	font-weight:500;
 }
 .proceed{
 	height:8vh;
@@ -276,9 +277,9 @@ button:hover{
 	background: #B87333;
 	border-radius:8px;
 }
-/*td{
+td{
 	border:1px solid black;
-}*/
+}
 .copy:hover{
 	cursor:pointer;
 }
@@ -296,3 +297,91 @@ button:hover{
 	color:white;
 	letter-spacing:1.2px;
 }
+.poll_cr{
+	background:#036bfc;
+	color:white;
+	border-width:0px;
+	height:5vh;
+	font-size:18px;
+	transition:0.5s;
+
+}
+.poll_cr:hover{
+	cursor:pointer;
+	border-radius:8px;
+	background: #02429c;
+}
+#add_opt{
+	font-family:Josefin;
+	left:5%;
+	position:relative;
+	height:5vh;
+	font-size:18px;
+	transition:0.4s;
+
+}
+#add_opt:hover{
+	cursor: pointer;
+	outline:none;
+	border-width:0px;
+	background: #31ba04;
+	color:white;
+}
+#publish_poll{
+	height:8vh;
+	border-radius:8px;
+	border-width:0px;
+	background:navy;
+	color:white;
+	transition:0.5s;
+	font-size:18px;
+	font-family:Josefin;
+
+}
+#publish_poll:hover{
+	cursor:pointer;
+	background:#42b0f5;
+}
+#ques{
+	position:relative;
+	left:10%;
+}
+.add_opt{
+	width:10%;
+	border-radius:5px;
+	font-family:Josefin;
+	font-size:22px;
+	transition:0.5s;
+	border-width:0.1px;
+
+	
+
+}
+.add_opt:hover{
+	cursor:pointer;
+	box-shadow:inset 100px 0px 0px 0px orange;
+	color:white;
+}
+.close{
+	float:right;
+	width:5vh;
+	height:5vh;
+	margin:10px 10px 0px 0px;
+	border-radius:30%;
+	border-width:1px;
+	transition:0.5s;
+
+}
+.close:hover{
+	cursor:pointer;
+	background:linear-gradient(45deg,indianred,red,white);
+	color:white;
+}
+@keyframes rotate_360{
+	from{
+		transform: rotateZ(0deg);
+	}
+	to{
+		transform: rotateZ(360deg);
+	}
+} 
