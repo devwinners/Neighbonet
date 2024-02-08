@@ -395,52 +395,93 @@ import {auth,db,storage} from '/config.js'
 							}
 						}
 						catch(err){}
-						let participate_poll=document.createElement('div')
-						participate_poll.id='participate_poll'
-						participate_poll.style='border:2px dashed black;border-radius:5px;'
-						participate_poll.innerHTML=`
-							<center><h2><u>Voice your Opinion</u></h2></center>
-							<br>
-							<h3 style='margin-left:20px;'>`+g.data().title+`</h3>
+						//Checking if user has already taken the poll
+						let user_polled
+						await db.collection('residents').doc(await auth.currentUser.email).get().then(async (th)=>{
+							user_polled=th.data().polls
+						})
+						if (user_polled.includes(g.id)){
+							let participate_poll=document.createElement('div')
+							participate_poll.id='participate_poll'
+							participate_poll.style='border:2px dashed black;border-radius:5px;'
+							participate_poll.innerHTML=`
+								<center><h2><u>Voice your Opinion</u></h2></center>
+								<br>
+								<h3 style='margin-left:20px;'>`+g.data().title+`</h3>
 
-						`
-						polldiv.appendChild(participate_poll)
-						let chosevotes=[]
-						for (let pollbtns in g.data().choices){
-							let rbtnlbl=document.createElement('label')
-							rbtnlbl.style='margin-left:20px;'
-							let rbtn=document.createElement('input')
-							rbtn.type='checkbox'
-							rbtn.id=g.id+'_'+pollbtns
-							rbtnlbl.appendChild(rbtn)
-							rbtnlbl.innerHTML+='   '+pollbtns
-							chosevotes.push(rbtn)
-							participate_poll.appendChild(rbtnlbl)
-							participate_poll.appendChild(document.createElement('br'))
-							participate_poll.appendChild(document.createElement('br'))
+							`
+							polldiv.appendChild(participate_poll)
+							let chosevotes={}
+							for (let pollbtns in g.data().choices){
+								let rbtnlbl=document.createElement('label')
+								rbtnlbl.style='margin-left:20px;'
+								rbtnlbl.id=g.id+'_'+pollbtns+"lbls"
+								let rbtn=document.createElement('input')
+								rbtn.type='checkbox'
+								rbtn.id=g.id+'_'+pollbtns
+								rbtnlbl.appendChild(rbtn)
+								rbtnlbl.innerHTML+='   '+pollbtns
+								chosevotes[g.id+'_'+pollbtns]=[false,pollbtns]
+								participate_poll.appendChild(rbtnlbl)
+								participate_poll.appendChild(document.createElement('br'))
+								participate_poll.appendChild(document.createElement('br'))
+								//Selecting one checkbox at a time
+								document.getElementById(g.id+'_'+pollbtns).onchange=function(e){
+									if (e.currentTarget.checked){
+										for (let btns in chosevotes){
+											if (btns!=g.id+'_'+pollbtns){
+												document.getElementById(btns).checked=false
+												chosevotes[btns][0]=false
+											}
 
-						}
-						var submitpoll=document.createElement('button')
-						submitpoll.innerHTML=`<span class='fa fa-solid fa-upload'></span>  Submit Poll`
-						for (let checker in chosevotes){
-							document.getElementById(chosevotes[checker].id).onclick=function(e){
-								console.log(e.currentTarget.checked)
-								for (let cbtns in chosevotes){
-									if (cbtns!=checker){
-										document.getElementById(chose)
+										}
+										chosevotes[g.id+'_'+pollbtns][0]=true
 									}
+									else{
+										chosevotes[g.id+'_'+pollbtns][0]=false
+									}
+
 								}
 
 							}
+
+							var submitpoll=document.createElement('center')
+							submitpoll.innerHTML=`<button class='submitpoll' id='submitpoll'><span class='fa fa-solid fa-upload'></span>  Submit Poll</button>`
+							participate_poll.appendChild(submitpoll)
+							participate_poll.appendChild(document.createElement('br'))
+							participate_poll.appendChild(document.createElement('br'))
+							document.getElementById('submitpoll').onclick=async function(){
+								console.log(chosevotes)
+								let total=g.data().total_voters+1
+								let novotes=await g.data().choices
+								for (let inhtmls in chosevotes){
+									if (chosevotes[inhtmls][0]==true){
+										novotes[chosevotes[inhtmls][1]]+=1
+									}
+								}
+								/*await db.collection('polls').doc(g.id).update({
+									total_voters:total,
+									choices:novotes
+								})*/
+								await db.collection('residents').doc(await auth.currentUser.email).get().then(async(t)=>{
+									let polls=await t.data().polls 
+									polls.push(g.id)
+									await db.collection('residents').doc(await auth.currentUser.email).update({polls:polls})
+								})
+
+							}
+							let gapbr=document.createElement('br')
+							gapbr.setAttribute('class','poll_gap_br')
+							polldiv.appendChild(gapbr)
+							polldiv.appendChild(gapbr)
+							polldiv.appendChild(participate_poll)
+							await db.collection('residents').doc(await auth.currentUser.email).get().then(async (m)=>{
+								console.log(await m.data().polls)
+							})
 						}
-						let gapbr=document.createElement('br')
-						gapbr.setAttribute('class','poll_gap_br')
-						polldiv.appendChild(gapbr)
-						polldiv.appendChild(gapbr)
-						polldiv.appendChild(participate_poll)
-						await db.collection('residents').doc(await auth.currentUser.email).get().then(async (m)=>{
-							console.log(await m.data().polls)
-						})
+						else{
+							alert("You have already taken the poll")
+						}
 					} 
 				}
 

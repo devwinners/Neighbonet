@@ -430,3 +430,18 @@ canvas{
 label{
 	font-family: Raleway;
 }
+.submitpoll{
+	border-radius:5px;
+	margin:auto;
+	border-width:0.2px;
+	font-family:Raleway;
+	height:8vh;
+	transition:0.5s;
+}
+.submitpoll:hover{
+	cursor:pointer;
+	letter-spacing:0.8px;
+	box-shadow:inset 200px 50px 0px 0px #6942f5;
+	border-width:0px;
+	color:white;
+}

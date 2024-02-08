@@ -733,7 +733,7 @@
 										designation:y,
 										phno:posting[y][1],
 										mailid:posting[y][2],
-										polls:""
+										polls:[]
 									})
 								}
 								document.getElementById('addcom').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
@@ -895,7 +895,7 @@
 													phno:persdet['phno'],
 													mailid:persdet['mailid'],
 													comuid:comid,
-													polls:''
+													polls:[]
 												});
 												await auth.signOut();
 												await auth.createUserWithEmailAndPassword(username,document.getElementById('passwd').value.trim());
