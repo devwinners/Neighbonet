@@ -732,7 +732,8 @@
 										passwd:comuid.toString(),
 										designation:y,
 										phno:posting[y][1],
-										mailid:posting[y][2]
+										mailid:posting[y][2],
+										polls:""
 									})
 								}
 								document.getElementById('addcom').innerHTML=`<span class="fa fa-solid fa-hourglass" style="animation-name:loading;animation-duration:1s;animation-iteration-count:infinite;animation-fill-mode:forwards;"></span>`;
@@ -893,7 +894,8 @@
 													name:persdet['name'],
 													phno:persdet['phno'],
 													mailid:persdet['mailid'],
-													comuid:comid
+													comuid:comid,
+													polls:''
 												});
 												await auth.signOut();
 												await auth.createUserWithEmailAndPassword(username,document.getElementById('passwd').value.trim());

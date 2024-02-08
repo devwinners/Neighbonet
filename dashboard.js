@@ -261,15 +261,15 @@ import {auth,db,storage} from '/config.js'
 		})
 	}
 	document.getElementById('polls').onclick=async function(){
-		let options={};
+		document.getElementById('widg_cont').innerHTML=``
 		let polldiv=document.createElement('div')
 		polldiv.style='margin:auto;width:90%;height:90vh;overflow-y:auto;transition:0.5s;'
 		polldiv.innerHTML=`
 			<br>
 			<button class='poll_cr' id='poll_cr' style='float:right;'><span class='fa fa-solid fa-plus'></span> Create Poll</button>
-			<br><br><br><br>
-			<div style='width:100%;display:flex;'>
-				<table style='width:100%;border-collapse:collapse;'>
+			<br><br>
+			<div id='poll_cont' style='width:100%;max-height:80vh;overflow-y:auto;'>
+				<table id='poll_tbl' style='width:100%;border-collapse:collapse;'>
 					<tr>
 						<td style='width:25%;border:1px solid white;height:7vh;font-family:Josefin;font-weight:500;background:#689ff7;color:white;font-size:22px;'><center>Question</center></td>
 						<td style='width:25%;border:1px solid white;height:7vh;font-family:Josefin;font-weight:500;background:#689ff7;color:white;font-size:22px;'><center>Date of Creation</center></td>
@@ -281,13 +281,174 @@ import {auth,db,storage} from '/config.js'
 		`
 		document.getElementById('widg_cont').appendChild(polldiv)
 		await db.collection("polls").onSnapshot((snap)=>{
-			console.log('hi')
-			snap.docs.map((g)=>{
-				console.log(g.data())
+			document.getElementById('poll_tbl').innerHTML=`
+				<tr>
+					<td style='width:25%;border:1px solid white;height:7vh;font-family:Josefin;font-weight:500;background:#689ff7;color:white;font-size:22px;'><center>Question</center></td>
+					<td style='width:25%;border:1px solid white;height:7vh;font-family:Josefin;font-weight:500;background:#689ff7;color:white;font-size:22px;'><center>Date of Creation</center></td>
+					<td style='width:25%;border:1px solid white;height:7vh;font-family:Josefin;font-weight:500;background:#689ff7;color:white;font-size:22px;'><center>Last date to submit</center></td>
+					<td style='width:25%;border:1px solid white;height:7vh;font-family:Josefin;font-weight:500;background:#689ff7;color:white;font-size:22px;'><center>Action</center></td>
+				</tr>				
+
+			`
+			var c=0;
+			snap.docs.map(async (g)=>{
+
+				let comuid;
+				await db.collection('residents').doc(await auth.currentUser.email).get().then(async (user_det)=>{
+					comuid=await user_det.data().comuid
+				})
+				if (g.data().raised_by.comuid==comuid){
+					let pollrow=document.createElement('tr')
+					pollrow.setAttribute('class','polls_row')
+					c++;
+					pollrow.innerHTML=`
+							<td style='font-family:Josefin;font-weight:500;font-size:18px;'><center>`+g.data().title+`</center></td>
+							<td style='font-family:Josefin;font-weight:500;font-size:18px;'><center>`+g.data().date_of_creation+`</center></td>
+							<td style='font-family:Josefin;font-weight:500;font-size:18px;'><center>`+g.data().date_of_expiry+`</center></td>
+							<td style='font-family:Josefin;font-weight:500;font-size:18px;'><center><button id='view_poll`+g.id+`' class='view_poll'>View Poll</button><center>
+							<center><button id='cast_poll`+g.id+`' class='cast_poll'>Participate in Poll</button></center></td>
+						`
+						document.getElementById("view_poll")
+					document.getElementById('poll_tbl').appendChild(pollrow)
+					document.getElementById('view_poll'+g.id).onclick=async function viewpoll(){
+						try{
+							document.getElementById('polls_cont_div').remove()
+							for (let brs of document.getElementsByClassName('pollbr')){
+								brs.remove()
+							}
+						}
+						catch(err){
+
+						}
+						document.getElementById('view_poll'+g.id).innerHTML=`Close Poll`
+						document.getElementById('view_poll'+g.id).setAttribute('class','close_poll')
+						document.getElementById('view_poll'+g.id).onclick=function(){
+							document.getElementById('polls_cont_div').remove()
+							for (let breaks of document.getElementsByClassName('pollbr')){
+								breaks.remove()
+							}
+							document.getElementById('view_poll'+g.id).setAttribute('class','view_poll')
+							document.getElementById('view_poll'+g.id).innerHTML="View Poll"
+							document.getElementById('view_poll'+g.id).onclick=viewpoll
+
+						}
+						let viewpolldiv=document.createElement('div')
+						viewpolldiv.id='polls_cont_div'
+						viewpolldiv.style='margin:auto;width:67vw;background:white;height:40vh;display:flex;justify-content:space-evenly;'
+						viewpolldiv.innerHTML=`
+							<canvas id='count_vote' style='float:right;'></canvas>
+							<div style='width:35%;background:#e1e2e3;border:2px dashed black;border-radius:8px;'>
+								<center><h3><u>Poll Details</u></h3></center>
+								<h4 style='padding-left:10px;' id='polltitle'>Title:  `+g.data().title+`</h4>
+								<h4 style='padding-left:10px;' id='tot_votes'>Total Votes:  `+g.data().total_voters+`</h4>
+								<h4 style='padding-left:10px;' id='reqname'>Poll raised by:  `+g.data().raised_by.name+`</h4>
+								<h4 style='padding-left:10px;' id='polldate'>Poll created on:  `+g.data().date_of_creation+`</h4>
+								<h4 style='padding-left:10px;' id='pollexpiry'>Poll created on:  `+g.data().date_of_expiry+`</h4>
+
+							</div>
+							<br><br>
+
+							
+						`
+						var br=document.createElement('br')
+						br.setAttribute('class','pollbr')
+						polldiv.appendChild(br)
+						polldiv.appendChild(br)
+						polldiv.appendChild(viewpolldiv)
+						document.getElementById('polls_cont_div').scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})
+						let questions=[],counts=[];
+
+						let firestore_choices=await g.data().choices
+						for (let q in firestore_choices){
+							questions.push(q.split(' '))
+							counts.push(firestore_choices[q])
+						}
+						
+						const graph_holder=document.getElementById('count_vote')
+						new Chart(graph_holder,{
+							type:'bar',
+							data:{
+								labels:questions,
+								datasets:[{
+									label:"No. of Votes",
+									data:counts,
+									borderWidth:1
+
+								}]
+							},
+							options:{
+								scales:{
+									y:{
+										beginAtZero:true
+									}
+								},
+								maintainAspectRatio:true,
+								responsive:true
+							}
+						})
+					}
+					document.getElementById('cast_poll'+g.id).onclick=async function castpoll(){
+						try{
+							document.getElementById('participate_poll').remove()
+							for (let gaps of document.getElementsByClassName('poll_gap_br')){
+								gaps.remove()
+							}
+						}
+						catch(err){}
+						let participate_poll=document.createElement('div')
+						participate_poll.id='participate_poll'
+						participate_poll.style='border:2px dashed black;border-radius:5px;'
+						participate_poll.innerHTML=`
+							<center><h2><u>Voice your Opinion</u></h2></center>
+							<br>
+							<h3 style='margin-left:20px;'>`+g.data().title+`</h3>
+
+						`
+						polldiv.appendChild(participate_poll)
+						let chosevotes=[]
+						for (let pollbtns in g.data().choices){
+							let rbtnlbl=document.createElement('label')
+							rbtnlbl.style='margin-left:20px;'
+							let rbtn=document.createElement('input')
+							rbtn.type='checkbox'
+							rbtn.id=g.id+'_'+pollbtns
+							rbtnlbl.appendChild(rbtn)
+							rbtnlbl.innerHTML+='   '+pollbtns
+							chosevotes.push(rbtn)
+							participate_poll.appendChild(rbtnlbl)
+							participate_poll.appendChild(document.createElement('br'))
+							participate_poll.appendChild(document.createElement('br'))
+
+						}
+						var submitpoll=document.createElement('button')
+						submitpoll.innerHTML=`<span class='fa fa-solid fa-upload'></span>  Submit Poll`
+						for (let checker in chosevotes){
+							document.getElementById(chosevotes[checker].id).onclick=function(e){
+								console.log(e.currentTarget.checked)
+								for (let cbtns in chosevotes){
+									if (cbtns!=checker){
+										document.getElementById(chose)
+									}
+								}
+
+							}
+						}
+						let gapbr=document.createElement('br')
+						gapbr.setAttribute('class','poll_gap_br')
+						polldiv.appendChild(gapbr)
+						polldiv.appendChild(gapbr)
+						polldiv.appendChild(participate_poll)
+						await db.collection('residents').doc(await auth.currentUser.email).get().then(async (m)=>{
+							console.log(await m.data().polls)
+						})
+					} 
+				}
+
 			})
 
 		})
 		document.getElementById('poll_cr').onclick=async function(){
+			let options={};
 			let pollcrdiv=document.createElement('div')
 			pollcrdiv.id='poll_create'
 			pollcrdiv.style='margin:auto;width:90%;background:whitesmoke;border-radius:5px;border:2px dashed black;'
@@ -324,19 +485,20 @@ import {auth,db,storage} from '/config.js'
 			pollcrdiv.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})
 			document.getElementById('widg_cont').appendChild(document.createElement('br'))
 			document.getElementById('add_opt').onclick=function(){
-				if (Object.keys(options).length<7){
-					let option=document.createElement('div')
-					option.style='width:50%;display:flex;justify-content:space-evenly;'
-					option.innerHTML=`
-						<div class='inputbox'>
-							<input required id='option'>
-							<label id='optlbl'>Option `+((Object.keys(options).length)+1)+`</label>
-						</div>
-						<button id='add_option' class='add_opt'><span class='fa fa-solid fa-add'></span></button>
+				let option=document.createElement('div')
+				option.id='optiondiv'
+				option.style='width:50%;display:flex;justify-content:space-evenly;'
+				option.innerHTML=`
+					<div class='inputbox'>
+						<input required id='option'>
+						<label id='optlbl'>Option `+((Object.keys(options).length)+1)+`</label>
+					</div>
+					<button id='add_option' class='add_opt'><span class='fa fa-solid fa-add'></span></button>
 
-					`
-					document.getElementById('ques').appendChild(option)
-					document.getElementById('add_option').onclick=function(){
+				`
+				document.getElementById('ques').appendChild(option)
+				document.getElementById('add_option').onclick=function(){
+					if (Object.keys(options).length<7){
 						let option_val=document.getElementById('option').value.trim()
 						let option_txt=document.createElement('h2')
 						option_txt.innerHTML=(Object.keys(options).length+1).toString()+'.)'+' '+option_val
@@ -345,10 +507,11 @@ import {auth,db,storage} from '/config.js'
 						options[option_val]=0
 						document.getElementById('optlbl').innerHTML=`Option `+(Object.keys(options).length+1).toString()
 					}
+					else{
+						alert("You have reached the maximum number of options")
+						document.getElementById('optiondiv').remove()
 
-				}
-				else{
-					alert("You have reached the maximum number of options")
+					}
 				}
 			}
 			document.getElementById('publish_poll').onclick=async function(){
