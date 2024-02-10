@@ -1,6 +1,10 @@
 import {auth,db,storage} from '/config.js'
 
 (async function init(){
+	// await auth.signOut().then(()=>{
+	// 	alert("Done")
+	// })
+
 	function scroll_on_hover(ele){
 		ele.onmouseover=function(){
 			ele.style.overflowY='auto'
@@ -92,132 +96,367 @@ import {auth,db,storage} from '/config.js'
 	}
 	scroll_on_hover(document.getElementById('dash_div'))
 	document.getElementById('visit_approve').onclick=async function(){
-		document.getElementById('widg_cont').innerHTML=``
-		let pre_approve_dets={photo_prev:'',name:'',desc:'',dov:'',tov:''}
-		document.getElementById('widg_cont').appendChild(document.createElement('br'))
-		let view_approve_div=document.createElement('div')
-		view_approve_div.style='margin:auto;width:70vw;border-radius:8px;border:2px solid black;background:whitesmoke;'
-		view_approve_div.innerHTML=`
-			<center><h2>Visitor Pre - Approval</h2></center>
-			<br>
-			<div style='width:100%;height:100%;display:flex;justify-content:space-evenly;'>
-				<div>
-					<div class='inputbox' style='width:30vw;margin-left:50px;'>
-						<input required id='name'>
-						<label>Name of Visitor</label>
+		if (await auth.currentUser.email.split('.').length==3){
+			document.getElementById('widg_cont').innerHTML=``
+			let pre_approve_dets={photo_prev:'',name:'',desc:'',dov:'',tov:''}
+			document.getElementById('widg_cont').appendChild(document.createElement('br'))
+			let view_approve_div=document.createElement('div')
+			view_approve_div.style='margin:auto;width:70vw;border-radius:8px;border:2px solid black;background:whitesmoke;'
+			view_approve_div.innerHTML=`
+				<center><h2>Visitor Pre - Approval</h2></center>
+				<br>
+				<div style='width:100%;height:100%;display:flex;justify-content:space-evenly;'>
+					<div>
+						<div class='inputbox' style='width:30vw;margin-left:50px;'>
+							<input required id='name'>
+							<label>Name of Visitor</label>
+						</div>
+						<br>
+						<textarea id='desc' style='margin-left:50px;width:30vw;height:25vh;resize:none;border-radius:5px;' placeholder='Description of Visitor (Optional)'></textarea>
+						<br><br>
+						<div class='inputbox' style='width:30vw;margin-left:50px;'>
+							<input onfocus='(this.type="date")' onfocusout='(this.type="text")' required id='dov'>
+							<label>Date of Visit</label>
+						</div>
+						<br><br>
+						<div class='inputbox' style='width:30vw;margin-left:50px;'>
+							<input onfocus='(this.type="time")' onfocusout='(this.type="text")' required id='tov'>
+							<label>Expected Time of Visit (24-hr format)</label>
+						</div>
 					</div>
-					<br>
-					<textarea id='desc' style='margin-left:50px;width:30vw;height:25vh;resize:none;border-radius:5px;' placeholder='Description of Visitor (Optional)'></textarea>
-					<br><br>
-					<div class='inputbox' style='width:30vw;margin-left:50px;'>
-						<input onfocus='(this.type="date")' onfocusout='(this.type="text")' required id='dov'>
-						<label>Date of Visit</label>
-					</div>
-					<br><br>
-					<div class='inputbox' style='width:30vw;margin-left:50px;'>
-						<input onfocus='(this.type="time")' onfocusout='(this.type="text")' required id='tov'>
-						<label>Expected Time of Visit (24-hr format)</label>
+					<div>
+						<center><img id='photo_prev' style='width:10vw;height:20vh;border:2px dashed black;background:whitesmoke;border-radius:8px;'>
+							
+						</center>
+						<br><br>
+						<center><button id='visitor_photo' style='font-family:Josefin;border-radius:8px;border-width:0.2px;height:5vh;'>Upload Picture</button></center>
 					</div>
 				</div>
-				<div>
-					<center><img id='photo_prev' style='width:10vw;height:20vh;border:2px dashed black;background:whitesmoke;border-radius:8px;'>
-						
-					</center>
-					<br><br>
-					<center><button id='visitor_photo' style='font-family:Josefin;border-radius:8px;border-width:0.2px;height:5vh;'>Upload Picture</button></center>
-				</div>
-			</div>
-			<br><br>
-			<center><button id='updets'>Upload Details</button></center>
-			<br><br>
+				<br><br>
+				<center><button id='updets'>Upload Details</button></center>
+				<br><br>
 
 
-			
-		`;
-		document.getElementById('widg_cont').appendChild(view_approve_div)
-		document.getElementById('updets').onclick=async function(){
-			let mandate=["name",'dov','tov']
-			let manc=0;
-			for (let mans of mandate){
-				if (document.getElementById(mans).value.trim().length==0){
-					alert('All fields are mandatory')
-					document.getElementById(mans).style.border='1px solid red'
-					break;
-				}
-				else{
-					document.getElementById(mans).style.border='1px solid black'
-					pre_approve_dets[mans]=document.getElementById(mans).value.trim()
-					manc++;
-				}
-			}
-			pre_approve_dets.desc=document.getElementById('desc').value;
-
-			let requester={}
-			await db.collection('residents').doc(await auth.currentUser.email).get().then(async (r)=>{
-				let received_data=await r.data()
-				for (let keys in received_data){
-					if (keys!='add' && keys!='mailid'){
-						requester[keys]=received_data[keys]
+				
+			`;
+			document.getElementById('widg_cont').appendChild(view_approve_div)
+			document.getElementById('updets').onclick=async function(){
+				let mandate=["name",'dov','tov']
+				let manc=0;
+				for (let mans of mandate){
+					if (document.getElementById(mans).value.trim().length==0){
+						alert('All fields are mandatory')
+						document.getElementById(mans).style.border='1px solid red'
+						break;
+					}
+					else{
+						document.getElementById(mans).style.border='1px solid black'
+						pre_approve_dets[mans]=document.getElementById(mans).value.trim()
+						manc++;
 					}
 				}
-			})
-			let docid;
-			await db.collection('vp_approval').add({await:true}).then(async(g)=>{
-				docid=await g.id
-			})
-			let visitor_photo='';
-			if (pre_approve_dets.photo_prev!=''){
-				await storage.ref().child(docid).put(pre_approve_dets.photo_prev).then(async(r)=>{
-					visitor_photo=await r.task.snapshot.ref.getDownloadURL()
+				pre_approve_dets.desc=document.getElementById('desc').value;
+				document.getElementById('updets').innerHTML=`<span class='fa fa-solid fa-hourglass' style='animation-name:rotate_360;animation-fill-mode:forwards;animation-duration:1s;animation-iteration-count:infinite;'></span>`
+					
+				let requester={}
+				await db.collection('residents').doc(await auth.currentUser.email).get().then(async (r)=>{
+					let received_data=await r.data()
+					for (let keys in received_data){
+						if (keys!='add' && keys!='mailid'){
+							requester[keys]=received_data[keys]
+						}
+					}
 				})
-			}
-			
-			
-			if (manc===mandate.length){
-				let vp_approval_data={
-					req_uid:await auth.currentUser.email,
-					req_comuid:requester.comuid,
-					req_name:requester.name,
-					req_floor:requester.floor,
-					req_block:requester.block,
-					req_dno:requester.d_no,
-					visitor_name:pre_approve_dets.name,
-					visitor_desc:pre_approve_dets.desc,
-					visitor_photo:visitor_photo,
-					dov:pre_approve_dets.dov,
-					tov:pre_approve_dets.tov
+				let docid;
+				await db.collection('vp_approval').add({await:true}).then(async(g)=>{
+					docid=await g.id
+				})
+				let visitor_photo='';
+				if (pre_approve_dets.photo_prev!=''){
+					await storage.ref().child(docid).put(pre_approve_dets.photo_prev).then(async(r)=>{
+						visitor_photo=await r.task.snapshot.ref.getDownloadURL()
+					})
+				}
+				
+				
+				if (manc===mandate.length){
+					let vp_approval_data={
+						req_uid:await auth.currentUser.email,
+						req_comuid:requester.comuid,
+						req_name:requester.name,
+						req_floor:requester.floor,
+						req_block:requester.block,
+						req_dno:requester.d_no,
+						visitor_name:pre_approve_dets.name,
+						visitor_desc:pre_approve_dets.desc,
+						visitor_photo:visitor_photo,
+						dov:pre_approve_dets.dov,
+						tov:pre_approve_dets.tov
 
+
+					}
+					await db.collection('vp_approval').doc(docid).set(vp_approval_data).then(()=>{
+						alert('Approval request updated successfully')
+						document.getElementById('updets').innerHTML='Upload Details'
+					})
+
+
+					
 
 				}
-				await db.collection('vp_approval').doc(docid).set(vp_approval_data).then(()=>{
-					alert('Approval request updated successfully')
-				})
-
+			}
+			document.getElementById('visitor_photo').onclick=function(){
 				
-
+				let file_fetcher=document.createElement('input')
+				file_fetcher.type='file'
+				
+				file_fetcher.onchange=async function({target}){
+					pre_approve_dets.photo_prev=target.files[0]
+					const file_reader=new FileReader()
+					file_reader.readAsDataURL(target.files[0])
+					file_reader.addEventListener('load',()=>{
+						document.getElementById('photo_prev').src=file_reader.result
+					})
+					
+					// await storage.ref().child('checking').put(e.target.files[0]).then(async(r)=>{
+					// 	console.log(await r.task.snapshot.ref.getDownloadURL())
+					// })
+					
+				}
+				file_fetcher.click()
+				
+				
 			}
 		}
-		document.getElementById('visitor_photo').onclick=function(){
-			
-			let file_fetcher=document.createElement('input')
-			file_fetcher.type='file'
-			
-			file_fetcher.onchange=async function({target}){
-				pre_approve_dets.photo_prev=target.files[0]
-				const file_reader=new FileReader()
-				file_reader.readAsDataURL(target.files[0])
-				file_reader.addEventListener('load',()=>{
-					document.getElementById('photo_prev').src=file_reader.result
+		else if(await auth.currentUser.email.split('.').length==4 && await auth.currentUser.email.split('.')[1]=='security'){
+			let pre_approve_reqs_div=document.createElement('div')
+			pre_approve_reqs_div.style='width:95%;margin:auto;max-height:60vh;overflow-y:auto;'
+			pre_approve_reqs_div.innerHTML=`
+				<table style='width:100%;border-collapse:collapse;' id='approvalreqtbl'>
+					<tr>
+						
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Visitor Name</center></td>
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Expected Date of <br>Visit</center></td>
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Expected time of <br>Visit</center></td>
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Requested <br>Block No</center></td>
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Requested <br>Floor No</center></td>
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Requested <br>Door No</center></td>
+						<td style='width:14.28%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Action</center></td>
+					</tr>
+
+				</table>
+
+
+			` 
+			document.getElementById('widg_cont').appendChild(pre_approve_reqs_div)
+			await db.collection("vp_approval").onSnapshot(async (nc)=>{
+				document.getElementById('approvalreqtbl').innerHTML=`
+					<tr>
+						
+						<td style='width:15%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Visitor Name</center></td>
+						<td style='width:12.5%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Expected Date of <br>Visit</center></td>
+						<td style='width:12.5%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Expected time of <br>Visit</center></td>
+						<td style='width:12.5%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Requested <br>Block No</center></td>
+						<td style='width:12.5%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Requested <br>Floor No</center></td>
+						<td style='width:12.5%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Requested <br>Door No</center></td>
+						<td style='width:12.5%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Status</center></td>
+						<td style='width:10%;background:#037bfc;color:white;border:1px solid white;height:8vh;font-family:Montserrat;font-weight:500;'><center>Action</center></td>
+					</tr>
+
+				`
+				nc.docs.map(async(ty)=>{
+					//console.log(await auth.currentUser.email.split('.')[2],ty.data().req_comuid)
+					if (await auth.currentUser.email.split('.')[2].split('@')[0]==ty.data().req_comuid){
+						let reqtr=document.createElement('tr')
+						reqtr.setAttribute('class','reqtr')
+						let dbdata=await ty.data()
+						let currdate=new Date()
+						currdate=currdate.getFullYear().toString()+'-'+(parseInt(currdate.getMonth())+1).toString()+'-'+currdate.getDate()
+						if (ty.data().dov>)
+						reqtr.innerHTML=`
+							<td style='border:1px solid black;'><center>`+dbdata.visitor_name+`</center></td>
+							<td style='border:1px solid black;'><center>`+dbdata.dov+`</center></td>
+							<td style='border:1px solid black;'><center>`+dbdata.tov+`</center></td>
+							<td style='border:1px solid black;'><center>`+dbdata.req_block+`</center></td>
+							<td style='border:1px solid black;'><center>`+dbdata.req_floor+`</center></td>
+							<td style='border:1px solid black;'><center>`+dbdata.req_dno+`</center></td>
+							<td style='border:1px solid black;'>
+									<center><button id='approve`+ty.id+`' class='approveopts'><span style='color:green;' class='fa fa-solid fa-check'></span>  Approve</button></center>
+									<center><button id='decline`+ty.id+`' class='approveopts'><span style='color:red;' class='fa fa-solid fa-xmark'></span>  Decline</button></center>
+									<center><button id='view`+ty.id+`' class='approveopts'><span style='color:navy;' class='fa fa-solid fa-eye'></span>  View</button></center>
+
+
+							</td>
+						`
+						document.getElementById('approvalreqtbl').appendChild(reqtr)
+						
+						if(ty.data().approval_status!=undefined){
+							console.log(ty.id)
+							document.getElementById('approve'+ty.id).disabled=true
+							document.getElementById('approve'+ty.id).style='background:#bbe6a1;border-radius:8px;'
+							document.getElementById('approve'+ty.id).innerHTML=`<span style='color:green;' class='fa fa-solid fa-check'></span>  Approved`
+
+
+						}
+						document.getElementById('decline'+ty.id).onclick=async function(){
+							try{
+								document.getElementById('viewvpdiv').remove()
+								for (let br_ of document.getElementsByClassName('vpreqviewbr')){
+									br_.remove()
+								}
+
+							}
+							catch(err){}
+							try{
+								document.getElementById('declinediv').remove()
+								for (let br_ of document.getElementsByClassName('vpreqviewbr')){
+									br_.remove()
+								}
+							}
+							catch(err){}
+							let reqbr=document.createElement('br')
+							reqbr.setAttribute('class','vpreqviewbr')
+							document.getElementById('widg_cont').appendChild(reqbr)
+							document.getElementById('widg_cont').appendChild(reqbr)
+							let viewvpdiv=document.createElement('div')
+							viewvpdiv.id='declinediv'
+							viewvpdiv.style='width:95%;display:flex;justify-content:space-evenly;margin:auto;border:2px dashed black;border-radius:8px;'
+							viewvpdiv.innerHTML=`
+								<div>
+									<center><h3><u>Requestor Details</u></h3></center>
+									<h3>Requestor Name: `+dbdata.req_name+`</h3>
+									<h3>Requestor Block No.: `+dbdata.req_block+`</h3>
+									<h3>Requestor Floor No.: `+dbdata.req_floor+`</h3>
+									<h3>Requestor Door No.: `+dbdata.req_dno+`</h3>
+								</div>
+								<div style='display:flex;justify-content:space-evenly;'>
+									<div>
+										<center><h3><u>Visitor Details</u></h3></center>
+										<h3>Visitor Name: `+dbdata.visitor_name+`</h3>
+										<h3>Date of Visit: `+dbdata.dov+`</h3>
+										<h3>Time of Visit: `+dbdata.tov+`</h3>
+										<textarea style='border-radius:8px;height:10vh;width:15vw;resize:none;'>`+dbdata.visitor_desc+`</textarea>
+										<br><br>
+									</div>
+									<img style='margin-top:10px;margin-left:25px;border-width:0.2px;border-radius:8px;width:150px;height:150px;' alt='Visitor's Photo' src='`+dbdata.visitor_photo+`'>
+
+
+
+								</div>
+								<div>
+									<br><br>
+									<center><textarea id='reasontxt' style='outline:none;resize:none;margin-right:5px;width:15vw;height:20vh;border-radius:8px;' placeholder='Enter reason for declining request'></textarea></center>
+									<br>
+									<center><button class='updatereason' id='updreason`+ty.id+`'><span class='fa fa-solid fa-upload'></span>  Update reason</button></center>
+
+								</div>
+
+							`
+							document.getElementById('widg_cont').appendChild(viewvpdiv)
+							let gapbr=document.createElement('br')
+							gapbr.setAttribute('class','vpreqviewbr')
+							document.getElementById('widg_cont').appendChild(gapbr)
+							document.getElementById('widg_cont').appendChild(gapbr)
+							viewvpdiv.scrollIntoView({behavior:'smooth',block:'center',inline:'center'})
+							document.getElementById('updreason'+ty.id).onclick=async function(){
+								document.getElementById('updreason'+ty.id).innerHTML=`<span class='fa fa-solid fa-hourglass' style='animation-name:rotate_360;animation-duration:1s;animation-fill-mode:forwards;animation-iteration-count:infinite;'></span>`
+								await db.collection("vp_approval").doc(ty.id).update({reason:document.getElementById('reasontxt').value,approval_status:'Declined'})
+								document.getElementById('updreason'+ty.id).innerHTML=`<span class='fa fa-solid fa-upload'></span>  Update reason`
+								alert("Reason updated")
+
+
+							}
+
+						}
+						
+						
+						document.getElementById('approve'+ty.id).onclick=async function(){
+							try{
+								document.getElementById('viewvpdiv').remove()
+								for (let br_ of document.getElementsByClassName('vpreqviewbr')){
+									br_.remove()
+								}
+
+							}
+							catch(err){}
+							try{
+								document.getElementById('declinediv').remove()
+								for (let br_ of document.getElementsByClassName('vpreqviewbr')){
+									br_.remove()
+								}
+							}
+							catch(err){}
+							await db.collection('vp_approval').doc(ty.id).update({approval_status:'Approved'})
+							alert("Request approved Successfully")
+							document.getElementById('approve'+ty.id).disabled=true
+							document.getElementById('approve'+ty.id).style='background:#bbe6a1;border-radius:8px;color:navy;'
+							document.getElementById('approve'+ty.id).innerHTML=`<span style='color:green;' class='fa fa-solid fa-check'></span>  Approved`
+
+						}
+						document.getElementById('view'+ty.id).onclick=function(){
+							try{
+								document.getElementById('viewvpdiv').remove()
+								for (let br_ of document.getElementsByClassName('vpreqviewbr')){
+									br_.remove()
+								}
+
+							}
+							catch(err){}
+							try{
+								document.getElementById('declinediv').remove()
+								for (let br_ of document.getElementsByClassName('vpreqviewbr')){
+									br_.remove()
+								}
+							}
+							catch(err){}
+							let reqbr=document.createElement('br')
+							reqbr.setAttribute('class','vpreqviewbr')
+							document.getElementById('widg_cont').appendChild(reqbr)
+							document.getElementById('widg_cont').appendChild(reqbr)
+							let viewvpdiv=document.createElement('div')
+							viewvpdiv.id='viewvpdiv'
+							viewvpdiv.style='width:95%;display:flex;justify-content:space-evenly;margin:auto;border:2px dashed black;border-radius:8px;'
+							viewvpdiv.innerHTML=`
+								<div>
+									<center><h3><u>Requestor Details</u></h3></center>
+									<h3>Requestor Name: `+dbdata.req_name+`</h3>
+									<h3>Requestor Block No.: `+dbdata.req_block+`</h3>
+									<h3>Requestor Floor No.: `+dbdata.req_floor+`</h3>
+									<h3>Requestor Door No.: `+dbdata.req_dno+`</h3>
+								</div>
+								<div style='display:flex;justify-content:space-evenly;'>
+									<div>
+										<center><h3><u>Visitor Details</u></h3></center>
+										<h3>Visitor Name: `+dbdata.visitor_name+`</h3>
+										<h3>Date of Visit: `+dbdata.dov+`</h3>
+										<h3>Time of Visit: `+dbdata.tov+`</h3>
+										<textarea style='border-radius:8px;height:10vh;width:15vw;resize:none;'>`+dbdata.visitor_desc+`</textarea>
+										<br><br>
+									</div>
+									<img style='margin-top:10px;margin-left:25px;border-width:0.2px;border-radius:8px;width:150px;height:150px;' alt='Visitor's Photo' src='`+dbdata.visitor_photo+`'>
+
+
+
+								</div>
+
+							`
+							document.getElementById('widg_cont').appendChild(viewvpdiv)
+							let gapbr=document.createElement('br')
+							gapbr.setAttribute('class','vpreqviewbr')
+							document.getElementById('widg_cont').appendChild(gapbr)
+							document.getElementById('widg_cont').appendChild(gapbr)
+							viewvpdiv.scrollIntoView({behavior:'smooth',block:'center',inline:'center'})
+
+
+						}
+
+						
+					}
+
 				})
-				
-				// await storage.ref().child('checking').put(e.target.files[0]).then(async(r)=>{
-				// 	console.log(await r.task.snapshot.ref.getDownloadURL())
-				// })
-				
-			}
-			file_fetcher.click()
-			
-			
+			})
+
+
 		}
 	}
 	document.getElementById('phonedir').onclick=async function(){
@@ -320,6 +559,13 @@ import {auth,db,storage} from '/config.js'
 						catch(err){
 
 						}
+						try{
+							document.getElementById('participate_poll').remove()
+							for (let gaps of document.getElementsByClassName('poll_gap_br')){
+								gaps.remove()
+							}
+						}
+						catch(err){}
 						document.getElementById('view_poll'+g.id).innerHTML=`Close Poll`
 						document.getElementById('view_poll'+g.id).setAttribute('class','close_poll')
 						document.getElementById('view_poll'+g.id).onclick=function(){
@@ -395,12 +641,22 @@ import {auth,db,storage} from '/config.js'
 							}
 						}
 						catch(err){}
+						try{
+							document.getElementById('polls_cont_div').remove()
+							for (let brs of document.getElementsByClassName('pollbr')){
+								brs.remove()
+							}
+						}
+						catch(err){
+
+						}
 						//Checking if user has already taken the poll
 						let user_polled
 						await db.collection('residents').doc(await auth.currentUser.email).get().then(async (th)=>{
-							user_polled=th.data().polls
+							user_polled=await th.data().polls
 						})
-						if (user_polled.includes(g.id)){
+						console.log(g.id,user_polled)
+						if (user_polled.includes(g.id)==false){
 							let participate_poll=document.createElement('div')
 							participate_poll.id='participate_poll'
 							participate_poll.style='border:2px dashed black;border-radius:5px;'
@@ -451,23 +707,32 @@ import {auth,db,storage} from '/config.js'
 							participate_poll.appendChild(document.createElement('br'))
 							participate_poll.appendChild(document.createElement('br'))
 							document.getElementById('submitpoll').onclick=async function(){
-								console.log(chosevotes)
-								let total=g.data().total_voters+1
-								let novotes=await g.data().choices
-								for (let inhtmls in chosevotes){
-									if (chosevotes[inhtmls][0]==true){
-										novotes[chosevotes[inhtmls][1]]+=1
-									}
-								}
-								/*await db.collection('polls').doc(g.id).update({
-									total_voters:total,
-									choices:novotes
-								})*/
-								await db.collection('residents').doc(await auth.currentUser.email).get().then(async(t)=>{
-									let polls=await t.data().polls 
-									polls.push(g.id)
-									await db.collection('residents').doc(await auth.currentUser.email).update({polls:polls})
+								let user_polled_2;
+								await db.collection("residents").doc(await auth.currentUser.email).get().then(async (nc)=>{
+									user_polled_2=await nc.data().polls
 								})
+								if (user_polled_2.includes(g.id)==false){
+									let total=g.data().total_voters+1
+									let novotes=await g.data().choices
+									for (let inhtmls in chosevotes){
+										if (chosevotes[inhtmls][0]==true){
+											novotes[chosevotes[inhtmls][1]]+=1
+										}
+									}
+									await db.collection('polls').doc(g.id).update({
+										total_voters:total,
+										choices:novotes
+									})
+									await db.collection('residents').doc(await auth.currentUser.email).get().then(async(t)=>{
+										let polls=await t.data().polls 
+										polls.push(g.id)
+										await db.collection('residents').doc(await auth.currentUser.email).update({polls:polls})
+									})
+								}
+								else{
+									alert("You have already taken the poll")
+
+								}
 
 							}
 							let gapbr=document.createElement('br')
@@ -475,12 +740,14 @@ import {auth,db,storage} from '/config.js'
 							polldiv.appendChild(gapbr)
 							polldiv.appendChild(gapbr)
 							polldiv.appendChild(participate_poll)
+							participate_poll.scrollIntoView({behavior:'smooth',block:'center',inline:'center'})
 							await db.collection('residents').doc(await auth.currentUser.email).get().then(async (m)=>{
 								console.log(await m.data().polls)
 							})
 						}
 						else{
 							alert("You have already taken the poll")
+
 						}
 					} 
 				}

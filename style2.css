@@ -1,14 +1,14 @@
 @font-face{
-	src:url('assets/Raleway.ttf');
-	font-family: Raleway;
+	src:url('assets/Montserrat.ttf');
+	font-family: Montserrat;
 
 }
-/*@font-face{
-	src:url('assets/RalewaySansBoldItalic.ttf');
-	font-family: Raleway-bold-italic;
-}
-
 @font-face{
+	src:url('assets/Montserrat-Italic.ttf');
+	font-family: Montserrat-regular;
+}
+
+/*@font-face{
 	src:url('assets/RalewaySansBold.ttf');
 	font-family: Raleway-bold;
 }
@@ -41,7 +41,7 @@ body{
 .anchors{
 	text-decoration:none;
 	color:black;
-	font-family:Raleway;
+	font-family:Montserrat;
 	font-size:20px;
 	padding:15px;
 	border-radius:10px;
@@ -59,7 +59,7 @@ body{
 	text-decoration:none;
 	color:white;
 	padding:15px;
-	font-family:Raleway;
+	font-family:Montserrat;
 	font-size:20px;
 	border-radius:10px;
 	transition:0.5s;
@@ -103,7 +103,7 @@ body{
 	border-radius:8px;
 	color:white;
 	padding:5px;
-	font-family: Raleway;
+	font-family: Montserrat;
 	font-size:40px;
 	position:absolute;
 	left:20%;
@@ -125,12 +125,12 @@ body{
 
 
 h1,h2,h3,h4,h5,h6{
-	font-family:Raleway;
+	font-family:Montserrat;
 	font-weight:500;
 }
 .proceed{
 	height:8vh;
-	font-family: Raleway;
+	font-family: Montserrat;
 	background:white;
 	border-width:1px;
 	border-radius:5px;
@@ -160,7 +160,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .inputbox label{
 	pointer-events: none;
-	font-family:Raleway;
+	font-family:Montserrat;
 	position:absolute;
 	top:25%;
 	left:2.5%;
@@ -197,12 +197,12 @@ h1,h2,h3,h4,h5,h6{
 #postsel{
 	width:60%;
 	height:5vh;
-	font-family:Raleway-regular;
+	font-family:Montserrat-regular;
 }
 .loginbtn{
 	background:purple;
 	color:white;
-	font-family:Raleway-regular;
+	font-family:Montserrat-regular;
 	width:6vw;
 	height:8vh;
 	border-radius:8px;
@@ -246,7 +246,7 @@ button:hover{
 	border-width:1px 0px 0px 0px;
 	border-color:white;
 	transition:0.5s;
-	font-family:Raleway;
+	font-family:Montserrat;
 
 
 }
@@ -288,7 +288,7 @@ button:hover{
 	height:8vh;
 	border-radius:8px;
 	border-width:0.2px;
-	font-family: Raleway;
+	font-family: Montserrat;
 	transition:0.5s;
 
 }
@@ -313,7 +313,7 @@ button:hover{
 	background: #02429c;
 }
 #add_opt{
-	font-family:Raleway;
+	font-family:Montserrat;
 	left:5%;
 	position:relative;
 	height:5vh;
@@ -336,7 +336,7 @@ button:hover{
 	color:white;
 	transition:0.5s;
 	font-size:18px;
-	font-family:Raleway;
+	font-family:Montserrat;
 
 }
 #publish_poll:hover{
@@ -350,7 +350,7 @@ button:hover{
 .add_opt{
 	width:10%;
 	border-radius:5px;
-	font-family:Raleway;
+	font-family:Montserrat;
 	font-size:22px;
 	transition:0.5s;
 	border-width:0.1px;
@@ -390,7 +390,7 @@ button:hover{
 	background: transparent;
 	border-width:0px;
 	text-decoration:underline;
-	font-family: Raleway;
+	font-family: Montserrat;
 	font-size:15px;
 	text-decoration-color:blue;
 	color:blue;
@@ -404,7 +404,7 @@ button:hover{
 	background: transparent;
 	border-width:0px;
 	text-decoration:underline;
-	font-family: Raleway;
+	font-family: Montserrat;
 	font-size:15px;
 	text-decoration-color:red;
 	color:red;
@@ -428,13 +428,13 @@ canvas{
 
 }
 label{
-	font-family: Raleway;
+	font-family: Montserrat;
 }
 .submitpoll{
 	border-radius:5px;
 	margin:auto;
 	border-width:0.2px;
-	font-family:Raleway;
+	font-family:Montserrat;
 	height:8vh;
 	transition:0.5s;
 }
@@ -444,4 +444,49 @@ label{
 	box-shadow:inset 200px 50px 0px 0px #6942f5;
 	border-width:0px;
 	color:white;
+}
+.reqtr td{
+	height:8vh;
+	font-family:Montserrat;
+	font-weight:400;
+	font-size:18px;
+
+}
+.approveopts{
+	border-width:0px;
+	font-size: 16px;
+	background: transparent;
+	font-family: Montserrat;
+	transition:0.3s;
+
+}
+.approveopts:hover{
+	cursor:pointer;
+	letter-spacing:1.5px;
+	color:blue;
+	text-decoration: underline;
+	text-decoration-color: blue;
+}
+.approveopts:disabled{
+	color:grey;
+}
+.approveopts:disabled:hover{
+	cursor:auto;
+	color:grey;
+	text-decoration: none;
+	letter-spacing: 0px;
+}
+.updatereason{
+	font-family:Montserrat;
+	border-width:0.1px;
+	border-radius:8px;
+	height:8vh;
+	transition:0.5s;
+
+}
+.updatereason:hover{
+	cursor:pointer;
+	background: #d6004f;
+	color:white;
+	border-width:0px;
 }
