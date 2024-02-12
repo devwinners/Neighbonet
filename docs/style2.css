@@ -1,0 +1,495 @@
+@font-face{
+	src:url('assets/Montserrat.ttf');
+	font-family: Montserrat;
+
+}
+@font-face{
+	src:url('assets/Montserrat-Italic.ttf');
+	font-family: Montserrat-regular;
+}
+
+/*@font-face{
+	src:url('assets/RalewaySansBold.ttf');
+	font-family: Raleway-bold;
+}
+@font-face{
+	src:url('assets/RalewaySansSemiBold.ttf');
+	font-family: Raleway-semibold;
+}
+
+@font-face{
+	src:url('assets/RalewaySansThinItalic.ttf');
+	font-family: Raleway-thinitalic;
+}
+@font-face{
+	src:url('assets/RalewaySansLightItalic.ttf');
+	font-family: Raleway-lightitalic;
+}
+@font-face{
+	src:url('assets/RalewaySansRegular.ttf');
+	font-family: Raleway-regular;
+}
+@font-face{
+	src:url('assets/RalewaySansThin.ttf');
+	font-family: Raleway-thin;
+}*/
+body{
+	margin:0;
+	padding:0;
+	overflow-x:hidden;
+}
+.anchors{
+	text-decoration:none;
+	color:black;
+	font-family:Montserrat;
+	font-size:20px;
+	padding:15px;
+	border-radius:10px;
+	transition:0.5s;
+}
+.anchors:hover{
+	box-shadow:inset 7px 0px 0px 0px #04ba1c,
+	inset -7px 0px 0px 0px #04ba1c,
+	inset 0px 2px 0px 0px navy,
+	inset 0px -2px 0px 0px navy;
+	text-decoration:underline;
+	text-decoration-color:black;
+}
+.signup{
+	text-decoration:none;
+	color:white;
+	padding:15px;
+	font-family:Montserrat;
+	font-size:20px;
+	border-radius:10px;
+	transition:0.5s;
+	animation-name:wipe;
+	animation-duration:4s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forwards;
+}
+@keyframes wipe{
+	0%{
+		background:white;
+	}
+	5%{
+		box-shadow:inset 200px 0px 0px 0px navy;
+		color:white;
+	}
+	50%{
+		box-shadow:inset -200px 0px 0px 0px white;
+		color:black;
+	}
+	75%{
+		box-shadow:inset 200px 0px 0px 0px navy;
+		color:white;
+	}
+	95%{
+		box-shadow:inset -200px 0px 0px 0px white;
+		color:black;
+	}
+}
+.signup:hover{
+	animation:none;
+	text-decoration: underline;
+	text-decoation-color:white;
+	box-shadow:inset 200px 0px 0px 0px #56b863;
+
+	
+
+}
+.registernow{
+	background: black;
+	border-radius:8px;
+	color:white;
+	padding:5px;
+	font-family: Montserrat;
+	font-size:40px;
+	position:absolute;
+	left:20%;
+	transition:0.3s;
+	text-decoration:none;
+
+
+
+}
+.registernow:hover{
+	cursor:pointer;
+	background: #039dfc;
+	border-width:0px;
+
+}
+
+
+
+
+
+h1,h2,h3,h4,h5,h6{
+	font-family:Montserrat;
+	font-weight:500;
+}
+.proceed{
+	height:8vh;
+	font-family: Montserrat;
+	background:white;
+	border-width:1px;
+	border-radius:5px;
+	transition:0.5s;
+
+}
+.proceed:hover{
+	cursor:pointer;
+	background: green;
+	color:white;
+
+}
+.inputbox{
+	position:relative;
+	width:25vw;
+}
+.inputbox input{
+	width:100%;
+	height:6vh;
+	border-radius:5px;
+	outline:none;
+
+}
+.inputbox input:focus{
+	border:2px solid navy;
+	outline:none;
+}
+.inputbox label{
+	pointer-events: none;
+	font-family:Montserrat;
+	position:absolute;
+	top:25%;
+	left:2.5%;
+	color:grey;
+	transition:0.5s;
+	background:white;
+	padding:5px;
+
+}
+.inputbox input:valid ~ label{
+	left:55%;
+	top:-35%;
+	color:grey;
+	border-radius:5px;
+	border:0.5px solid navy;
+}
+.inputbox input:focus ~ label{
+	left:55%;
+	top:-35%;
+	color:navy;
+	border-radius:5px;
+	border:0.5px solid navy;
+
+}
+.inputbox input:disabled{
+	border:2px solid grey;
+
+}
+.inputbox input:disabled ~ label{
+	left:55%;
+	top:-32%;
+}
+
+#postsel{
+	width:60%;
+	height:5vh;
+	font-family:Montserrat-regular;
+}
+.loginbtn{
+	background:purple;
+	color:white;
+	font-family:Montserrat-regular;
+	width:6vw;
+	height:8vh;
+	border-radius:8px;
+	font-size:1rem;
+	border-width:0px;
+	transition:0.5s;
+}
+.loginbtn:hover{
+	cursor:pointer;
+	letter-spacing:1.5px;
+	text-decoration:underline;
+	text-decoration-color:white;
+
+}
+button:hover{
+	cursor:pointer;
+
+}
+.toolbar{
+	position:fixed;
+	height:100vh;
+	width:20vw;
+	top:12.8%;
+	max-height:90vh;
+	overflow-y:hidden;
+	background:white;
+	border-radius:0 10px 10px 0px;
+	box-shadow:4px 0px 15px 2px black;
+	background-image:url("https://img.freepik.com/premium-photo/triangle-texture-futuristic-abstract-background_279525-26645.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	transition:0.5s;
+}
+.dash_btns{
+	width:100%;
+	height:7vh;
+	font-size:20px;
+	border-radius:8px;
+	background:transparent;
+	color:white;
+	border-width:1px 0px 0px 0px;
+	border-color:white;
+	transition:0.5s;
+	font-family:Montserrat;
+
+
+}
+.dash_btns:hover{
+	cursor:pointer;
+	background-color: rgb(255, 255, 255,0.25);
+	letter-spacing:1px;
+	border:none;
+	box-shadow:inset 10px 0px 0px 0px goldenrod,inset -10px 0px 0px 0px goldenrod;
+}
+.video-container{
+	height:100%;
+	width:100%;
+}
+.video-player{
+	height:100%;
+	width:100%;
+}
+#video_cont{
+	height:90vh;
+	width:90vw;
+}
+::-webkit-scrollbar{
+	width:0.4vw;
+	background:white;
+}
+::-webkit-scrollbar-thumb{
+
+	background: #B87333;
+	border-radius:8px;
+}
+/*td{
+	border:1px solid black;
+}*/
+.copy:hover{
+	cursor:pointer;
+}
+#updets{
+	height:8vh;
+	border-radius:8px;
+	border-width:0.2px;
+	font-family: Montserrat;
+	transition:0.5s;
+
+}
+#updets:hover{
+	cursor:pointer;
+	background:navy;
+	color:white;
+	letter-spacing:1.2px;
+}
+.poll_cr{
+	background:#036bfc;
+	color:white;
+	border-width:0px;
+	height:5vh;
+	font-size:18px;
+	transition:0.5s;
+
+}
+.poll_cr:hover{
+	cursor:pointer;
+	border-radius:8px;
+	background: #02429c;
+}
+#add_opt{
+	font-family:Montserrat;
+	left:5%;
+	position:relative;
+	height:5vh;
+	font-size:18px;
+	transition:0.4s;
+
+}
+#add_opt:hover{
+	cursor: pointer;
+	outline:none;
+	border-width:0px;
+	background: #31ba04;
+	color:white;
+}
+#publish_poll{
+	height:8vh;
+	border-radius:8px;
+	border-width:0px;
+	background:navy;
+	color:white;
+	transition:0.5s;
+	font-size:18px;
+	font-family:Montserrat;
+
+}
+#publish_poll:hover{
+	cursor:pointer;
+	background:#42b0f5;
+}
+#ques{
+	position:relative;
+	left:10%;
+}
+.add_opt{
+	width:10%;
+	border-radius:5px;
+	font-family:Montserrat;
+	font-size:22px;
+	transition:0.5s;
+	border-width:0.1px;
+
+	
+
+}
+.add_opt:hover{
+	cursor:pointer;
+	box-shadow:inset 100px 0px 0px 0px orange;
+	color:white;
+}
+.close{
+	float:right;
+	width:5vh;
+	height:5vh;
+	margin:10px 10px 0px 0px;
+	border-radius:30%;
+	border-width:1px;
+	transition:0.5s;
+
+}
+.close:hover{
+	cursor:pointer;
+	background:linear-gradient(45deg,indianred,red,white);
+	color:white;
+}
+@keyframes rotate_360{
+	from{
+		transform: rotateZ(0deg);
+	}
+	to{
+		transform: rotateZ(360deg);
+	}
+} 
+.view_poll,.cast_poll{
+	background: transparent;
+	border-width:0px;
+	text-decoration:underline;
+	font-family: Montserrat;
+	font-size:15px;
+	text-decoration-color:blue;
+	color:blue;
+	transition:0.4s;
+}
+.view_poll:hover,.cast_poll:hover{
+	cursor: pointer;
+	letter-spacing:1.5px;
+}
+.close_poll{
+	background: transparent;
+	border-width:0px;
+	text-decoration:underline;
+	font-family: Montserrat;
+	font-size:15px;
+	text-decoration-color:red;
+	color:red;
+	transition:0.4s;
+
+}
+.close_poll:hover{
+	cursor: pointer;
+	letter-spacing:1.5px;
+
+}
+.polls_row{
+	border-radius:5px;
+	border-bottom: 1px solid black;
+
+}
+canvas{
+	outline:1px solid black;
+	border-radius:8px;
+	padding:2px;
+
+}
+label{
+	font-family: Montserrat;
+}
+.submitpoll{
+	border-radius:5px;
+	margin:auto;
+	border-width:0.2px;
+	font-family:Montserrat;
+	height:8vh;
+	transition:0.5s;
+}
+.submitpoll:hover{
+	cursor:pointer;
+	letter-spacing:0.8px;
+	box-shadow:inset 200px 50px 0px 0px #6942f5;
+	border-width:0px;
+	color:white;
+}
+.reqtr td{
+	height:8vh;
+	font-family:Montserrat;
+	font-weight:400;
+	font-size:18px;
+
+}
+.approveopts{
+	border-width:0px;
+	font-size: 16px;
+	background: transparent;
+	font-family: Montserrat;
+	transition:0.3s;
+
+}
+.approveopts:hover{
+	cursor:pointer;
+	letter-spacing:1.5px;
+	color:blue;
+	text-decoration: underline;
+	text-decoration-color: blue;
+}
+.approveopts:disabled{
+	color:grey;
+}
+.approveopts:disabled:hover{
+	cursor:auto;
+	color:grey;
+	text-decoration: none;
+	letter-spacing: 0px;
+}
+.updatereason{
+	font-family:Montserrat;
+	border-width:0.1px;
+	border-radius:8px;
+	height:8vh;
+	transition:0.5s;
+
+}
+.updatereason:hover{
+	cursor:pointer;
+	background: #d6004f;
+	color:white;
+	border-width:0px;
+}
+.backbtn{
+	height:5vh;
+}
